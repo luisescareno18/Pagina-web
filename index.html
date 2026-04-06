@@ -17,7 +17,7 @@
             padding: 0;
         }
 
-        body > *:not(nav) {
+        body > *:not(nav):not(script) {
             display: inline-block;
             vertical-align: top;
             width: 100vw;
@@ -222,6 +222,12 @@
         .back-button:hover {
             background-color: #1e3a8a;
             transform: translateX(-5px);
+        }
+
+        .missing-asset {
+            opacity: 0.65;
+            filter: grayscale(1);
+            cursor: not-allowed;
         }
 
         body.dark-mode .back-button {
@@ -733,6 +739,64 @@
             document.getElementById('btn-en').classList.toggle('bg-slate-700', lang !== 'en');
         }
 
+        function createPlaceholderDataUri(label) {
+            const safeLabel = (label || 'Imagen no disponible')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
+            const svg = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+                    <defs>
+                        <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+                            <stop offset="0%" stop-color="#0f172a" />
+                            <stop offset="100%" stop-color="#1d4ed8" />
+                        </linearGradient>
+                    </defs>
+                    <rect width="1200" height="675" fill="url(#g)" />
+                    <rect x="60" y="60" width="1080" height="555" rx="36" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.22)" />
+                    <text x="600" y="315" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="700" text-anchor="middle">${safeLabel}</text>
+                    <text x="600" y="370" fill="#cbd5e1" font-family="Arial, Helvetica, sans-serif" font-size="24" text-anchor="middle">Archivo no disponible en este despliegue</text>
+                </svg>`;
+            return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+        }
+
+        function applyImageFallback(image) {
+            if (!image || image.dataset.fallbackReady === 'true') {
+                return;
+            }
+
+            image.dataset.fallbackReady = 'true';
+            image.addEventListener('error', () => {
+                image.src = createPlaceholderDataUri(image.alt || 'Imagen no disponible');
+            }, { once: true });
+        }
+
+        function markMissingLocalAsset(link) {
+            const href = link.getAttribute('href');
+            if (!href || /^(#|https?:|mailto:|tel:|javascript:)/i.test(href)) {
+                return;
+            }
+
+            if (!/\.(pdf|png|jpe?g|gif|webp|svg)$/i.test(href)) {
+                return;
+            }
+
+            fetch(new URL(href, window.location.href), { method: 'HEAD' })
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error('missing');
+                    }
+                })
+                .catch(() => {
+                    link.classList.add('missing-asset');
+                    link.setAttribute('aria-disabled', 'true');
+                    if (!link.dataset.originalTitle) {
+                        link.dataset.originalTitle = link.title || link.textContent.trim();
+                    }
+                    link.title = 'Archivo no publicado en el repositorio todavía';
+                });
+        }
+
         // Cargar idioma guardado al inicio
         window.addEventListener('DOMContentLoaded', () => {
             const savedTheme = localStorage.getItem('theme');
@@ -747,6 +811,9 @@
             if (savedLang !== 'es') {
                 changeLanguage(savedLang);
             }
+
+            document.querySelectorAll('img').forEach(applyImageFallback);
+            document.querySelectorAll('a[href]').forEach(markMissingLocalAsset);
         });
     </script>
 

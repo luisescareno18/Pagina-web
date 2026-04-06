@@ -230,12 +230,96 @@
             cursor: not-allowed;
         }
 
+        .about-hero {
+            background:
+                radial-gradient(circle at 5% 10%, rgba(59, 130, 246, 0.16), transparent 38%),
+                radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.12), transparent 40%);
+        }
+
+        .about-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            right: -60px;
+            width: 180px;
+            height: 180px;
+            border-radius: 999px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.25) 0%, rgba(59, 130, 246, 0) 70%);
+        }
+
         body.dark-mode .back-button {
             background-color: #3b82f6;
         }
 
         body.dark-mode .back-button:hover {
             background-color: #1e40af;
+        }
+
+        body.dark-mode .about-hero {
+            background:
+                radial-gradient(circle at 5% 10%, rgba(37, 99, 235, 0.2), transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.14), transparent 42%);
+        }
+
+        body.dark-mode .text-blue-600 {
+            color: #93c5fd !important;
+        }
+
+        body.dark-mode .bg-white\/80 {
+            background-color: rgba(15, 23, 42, 0.72) !important;
+            border-color: #334155 !important;
+        }
+
+        body.dark-mode .about-card {
+            background-color: #0f172a !important;
+            border-color: #334155 !important;
+            box-shadow: 0 16px 38px rgba(0, 0, 0, 0.45) !important;
+        }
+
+        body.dark-mode .about-card img {
+            border-color: #1e293b !important;
+        }
+
+        body.dark-mode .bg-slate-100 {
+            background-color: #0b1220 !important;
+        }
+
+        body.dark-mode .border-blue-100,
+        body.dark-mode .border-purple-100,
+        body.dark-mode .border-emerald-100 {
+            border-color: #334155 !important;
+        }
+
+        body.dark-mode .bg-emerald-50 {
+            background-color: #123528 !important;
+        }
+
+        body.dark-mode .text-emerald-700 {
+            color: #6ee7b7 !important;
+        }
+
+        body.dark-mode .about-card .bg-slate-900 {
+            background-color: #2563eb !important;
+        }
+
+        body.dark-mode .about-card .hover\:bg-slate-800:hover {
+            background-color: #1d4ed8 !important;
+        }
+
+        body.dark-mode #fiverr iframe {
+            filter: brightness(0.92) contrast(1.05);
+        }
+
+        body.dark-mode .bg-blue-50,
+        body.dark-mode .bg-purple-50,
+        body.dark-mode .bg-red-50,
+        body.dark-mode .bg-gray-50 {
+            box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.15);
         }
     </style>
 </head>
@@ -263,17 +347,62 @@
         </div>
     </nav>
 
-    <header id="sobre-mi" class="py-20 bg-white">
-        <div class="container mx-auto px-6 flex flex-col md:flex-row items-center">
-            <div class="md:w-2/3">
-                <h2 class="text-4xl font-extrabold text-slate-900 mb-4" data-lang="header-title">Ingeniero en Mecatrónica</h2>
-                <p class="text-lg leading-relaxed mb-6 text-gray-600" data-lang="header-desc">
-                    Ingeniero en Mecatrónica, con experiencia en más de 20 proyectos internacionales de hardware y diseño de PCBs. Apasionado por la innovación tecnológica y la creación de soluciones eficientes 
-                    en el ámbito de los sistemas embebidos y robótica. Mi objetivo es seguir creciendo profesionalmente y contribuir al desarrollo de tecnologías que mejoren la calidad de vida.
-                </p>
-                <div class="flex space-x-4">
-                    <a href="CV.pdf" download class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition" data-lang="btn-cv">Descargar mi CV (PDF)</a>
-                    <a href="https://github.com/luisescareno18" class="text-2xl text-slate-800 hover:text-blue-600"><i class="fab fa-github"></i></a>
+    <header id="sobre-mi" class="py-20 bg-white about-hero">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+                <div class="lg:col-span-7">
+                    <p class="uppercase tracking-[0.22em] text-sm text-blue-600 font-semibold mb-3" data-lang="about-kicker">Perfil profesional</p>
+                    <h2 class="text-4xl lg:text-5xl font-extrabold text-slate-900 mb-4" data-lang="header-title">Ingeniero en Mecatrónica</h2>
+                    <p class="text-lg leading-relaxed mb-6 text-gray-600" data-lang="header-desc">
+                        Ingeniero en Mecatrónica, con experiencia en más de 20 proyectos internacionales de hardware y diseño de PCBs. Apasionado por la innovación tecnológica y la creación de soluciones eficientes 
+                        en el ámbito de los sistemas embebidos y robótica. Mi objetivo es seguir creciendo profesionalmente y contribuir al desarrollo de tecnologías que mejoren la calidad de vida.
+                    </p>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-7">
+                        <div class="bg-white/80 rounded-xl border border-blue-100 p-3 shadow-sm">
+                            <p class="text-xs text-gray-500" data-lang="metric1-label">Experiencia</p>
+                            <p class="text-xl font-bold text-slate-900" data-lang="metric1-value">20+ proyectos</p>
+                        </div>
+                        <div class="bg-white/80 rounded-xl border border-blue-100 p-3 shadow-sm">
+                            <p class="text-xs text-gray-500" data-lang="metric2-label">Especialidad</p>
+                            <p class="text-xl font-bold text-slate-900">PCB Design</p>
+                        </div>
+                        <div class="bg-white/80 rounded-xl border border-blue-100 p-3 shadow-sm">
+                            <p class="text-xs text-gray-500" data-lang="metric3-label">Servicios</p>
+                            <p class="text-xl font-bold text-slate-900" data-lang="metric3-value">Globales</p>
+                        </div>
+                        <div class="bg-white/80 rounded-xl border border-blue-100 p-3 shadow-sm">
+                            <p class="text-xs text-gray-500" data-lang="metric4-label">Modalidad</p>
+                            <p class="text-xl font-bold text-slate-900" data-lang="metric4-value">Freelance</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-4">
+                        <a href="CV.pdf" download class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition" data-lang="btn-cv">Descargar mi CV (PDF)</a>
+                        <a href="https://github.com/luisescareno18" class="text-slate-800 hover:text-blue-600 font-semibold inline-flex items-center gap-2">
+                            <i class="fab fa-github text-2xl"></i>
+                            <span data-lang="about-github">Ver GitHub</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5">
+                    <aside class="about-card bg-white rounded-2xl border border-gray-200 shadow-xl p-6 md:p-7">
+                        <div class="flex items-center gap-4 mb-5">
+                            <img src="https://github.com/luisescareno18.png" alt="Foto de perfil de Luis Escareno" class="w-20 h-20 rounded-full object-cover border-4 border-white shadow-md">
+                            <div>
+                                <h3 class="text-2xl font-bold text-slate-900">Luis E</h3>
+                                <p class="text-gray-500">@luis_escareno</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed mb-5" data-lang="about-card-bio">Diseño e innovación en electrónica y mecánica para convertir ideas en productos funcionales y listos para fabricar.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 text-sm rounded-full bg-blue-50 text-blue-700 border border-blue-100" data-lang="about-chip-1">Experto en EasyEDA</span>
+                            <span class="px-3 py-1 text-sm rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100" data-lang="about-chip-2">Desarrollador Python</span>
+                            <span class="px-3 py-1 text-sm rounded-full bg-purple-50 text-purple-700 border border-purple-100" data-lang="about-chip-3">Experto en SolidWorks</span>
+                        </div>
+                        <a href="https://es.fiverr.com/users/luis_escareno" target="_blank" class="inline-flex items-center justify-center w-full bg-slate-900 text-white px-4 py-3 rounded-lg hover:bg-slate-800 transition font-semibold">
+                            <i class="fas fa-briefcase mr-2"></i><span data-lang="about-cta">Ver servicios en Fiverr</span>
+                        </a>
+                    </aside>
                 </div>
             </div>
         </div>
@@ -656,6 +785,20 @@
                 'nav-articles': 'Artículos',
                 'header-title': 'Ingeniero en Mecatrónica',
                 'header-desc': 'Ingeniero en Mecatrónica, con experiencia en más de 20 proyectos internacionales de hardware y diseño de PCBs. Apasionado por la innovación tecnológica y la creación de soluciones eficientes en el ámbito de los sistemas embebidos y robótica. Mi objetivo es seguir creciendo profesionalmente y contribuir al desarrollo de tecnologías que mejoren la calidad de vida.',
+                'about-kicker': 'Perfil profesional',
+                'metric1-label': 'Experiencia',
+                'metric1-value': '20+ proyectos',
+                'metric2-label': 'Especialidad',
+                'metric3-label': 'Servicios',
+                'metric3-value': 'Globales',
+                'metric4-label': 'Modalidad',
+                'metric4-value': 'Freelance',
+                'about-github': 'Ver GitHub',
+                'about-card-bio': 'Diseño e innovación en electrónica y mecánica para convertir ideas en productos funcionales y listos para fabricar.',
+                'about-chip-1': 'Experto en EasyEDA',
+                'about-chip-2': 'Desarrollador Python',
+                'about-chip-3': 'Experto en SolidWorks',
+                'about-cta': 'Ver servicios en Fiverr',
                 'btn-cv': 'Descargar mi CV (PDF)',
                 'section-academic': 'Formación Académica',
                 'degree-title': 'Ingeniería en Mecatrónica',
@@ -689,6 +832,20 @@
                 'nav-articles': 'Articles',
                 'header-title': 'Mechatronics Engineer',
                 'header-desc': 'Mechatronics Engineer with experience in over 20 international hardware projects and PCB design. Passionate about technological innovation and creating efficient solutions in the field of embedded systems and robotics. My goal is to continue growing professionally and contribute to the development of technologies that improve quality of life.',
+                'about-kicker': 'Professional profile',
+                'metric1-label': 'Experience',
+                'metric1-value': '20+ projects',
+                'metric2-label': 'Specialty',
+                'metric3-label': 'Services',
+                'metric3-value': 'Worldwide',
+                'metric4-label': 'Work mode',
+                'metric4-value': 'Freelance',
+                'about-github': 'View GitHub',
+                'about-card-bio': 'Electronics and mechanical design innovation to turn ideas into functional products ready for manufacturing.',
+                'about-chip-1': 'EasyEDA Expert',
+                'about-chip-2': 'Python Developer',
+                'about-chip-3': 'SolidWorks Expert',
+                'about-cta': 'View Fiverr services',
                 'btn-cv': 'Download my CV (PDF)',
                 'section-academic': 'Academic Background',
                 'degree-title': 'Mechatronics Engineering',

@@ -376,7 +376,7 @@
                         </div>
                     </div>
                     <div class="flex flex-wrap items-center gap-4">
-                        <a href="CV.pdf" download class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition" data-lang="btn-cv">Descargar mi CV (PDF)</a>
+                        <a id="cv-download-button" href="CV.pdf" download="CV.pdf" data-cv-es="CV.pdf" data-cv-en="CV_EN.pdf" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition" data-lang="btn-cv">Descargar mi CV (PDF)</a>
                         <a href="https://github.com/luisescareno18" class="text-slate-800 hover:text-blue-600 font-semibold inline-flex items-center gap-2">
                             <i class="fab fa-github text-2xl"></i>
                             <span data-lang="about-github">Ver GitHub</span>
@@ -873,6 +873,31 @@
             }
         };
 
+        function updateCvDownloadLink(lang) {
+            const cvButton = document.getElementById('cv-download-button');
+            if (!cvButton) {
+                return;
+            }
+
+            const fallbackHref = cvButton.dataset.cvEs || 'CV.pdf';
+            const selectedHref = lang === 'en'
+                ? (cvButton.dataset.cvEn || fallbackHref)
+                : fallbackHref;
+
+            cvButton.setAttribute('href', selectedHref);
+            cvButton.setAttribute('download', selectedHref.split('/').pop());
+
+            cvButton.classList.remove('missing-asset');
+            cvButton.removeAttribute('aria-disabled');
+            if (cvButton.dataset.originalTitle) {
+                cvButton.title = cvButton.dataset.originalTitle;
+            } else {
+                cvButton.removeAttribute('title');
+            }
+
+            markMissingLocalAsset(cvButton);
+        }
+
         // Función para cambiar idioma
         function changeLanguage(lang) {
             // Guardar preferencia
@@ -894,6 +919,8 @@
             document.getElementById('btn-es').classList.toggle('bg-slate-700', lang !== 'es');
             document.getElementById('btn-en').classList.toggle('bg-blue-600', lang === 'en');
             document.getElementById('btn-en').classList.toggle('bg-slate-700', lang !== 'en');
+
+            updateCvDownloadLink(lang);
         }
 
         function createPlaceholderDataUri(label) {
@@ -965,9 +992,7 @@
             }
 
             const savedLang = localStorage.getItem('language') || 'es';
-            if (savedLang !== 'es') {
-                changeLanguage(savedLang);
-            }
+            changeLanguage(savedLang);
 
             document.querySelectorAll('img').forEach(applyImageFallback);
             document.querySelectorAll('a[href]').forEach(markMissingLocalAsset);

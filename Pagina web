@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Portafolio Profesional</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Horizontal scrolling layout */
+        body {
+            overflow-x: auto;
+            overflow-y: hidden;
+            height: 100vh;
+            white-space: nowrap;
+            margin: 0;
+            padding: 0;
+        }
+
+        body > *:not(nav) {
+            display: inline-block;
+            vertical-align: top;
+            width: 100vw;
+            height: calc(100vh - 64px);
+            overflow-y: auto;
+            flex-shrink: 0;
+            white-space: normal;
+            margin: 0;
+            padding-top: 64px;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+        }
+
+        body.dark-mode {
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+
+        body.dark-mode header,
+        body.dark-mode #proyectos,
+        body.dark-mode #fiverr,
+        body.dark-mode footer {
+            background-color: #111827;
+        }
+
+        body.dark-mode #academico {
+            background-color: #0b1220;
+        }
+
+        body.dark-mode .bg-white {
+            background-color: #1e293b !important;
+        }
+
+        body.dark-mode .text-gray-800,
+        body.dark-mode .text-gray-700,
+        body.dark-mode .text-gray-600,
+        body.dark-mode .text-gray-500,
+        body.dark-mode .text-slate-900,
+        body.dark-mode .text-slate-800 {
+            color: #cbd5e1 !important;
+        }
+
+        body.dark-mode .border-gray-100,
+        body.dark-mode .border-gray-200,
+        body.dark-mode .border-slate-700 {
+            border-color: #334155 !important;
+        }
+
+        body.dark-mode .shadow-sm,
+        body.dark-mode .shadow-lg,
+        body.dark-mode .shadow-md {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35) !important;
+        }
+
+        /* Dark mode background colors for different sections */
+        body.dark-mode .bg-gray-50 {
+            background-color: #1a2332 !important;
+        }
+
+        body.dark-mode .bg-gray-100 {
+            background-color: #111827 !important;
+        }
+
+        body.dark-mode .bg-gray-600 {
+            background-color: #475569 !important;
+        }
+
+        body.dark-mode .text-gray-500,
+        body.dark-mode .text-gray-400,
+        body.dark-mode .text-gray-300 {
+            color: #94a3b8 !important;
+        }
+
+        /* Badge/Tag colors for dark mode */
+        body.dark-mode .bg-blue-50,
+        body.dark-mode .bg-blue-100 {
+            background-color: #1e3a5f !important;
+        }
+
+        body.dark-mode .bg-blue-100,
+        body.dark-mode .text-blue-700 {
+            color: #60a5fa !important;
+        }
+
+        body.dark-mode .bg-red-50,
+        body.dark-mode .bg-red-100 {
+            background-color: #5f1e1e !important;
+        }
+
+        body.dark-mode .text-red-700 {
+            color: #f87171 !important;
+        }
+
+        body.dark-mode .bg-purple-50,
+        body.dark-mode .bg-purple-100 {
+            background-color: #3e1e5f !important;
+        }
+
+        body.dark-mode .text-purple-700 {
+            color: #d8b4fe !important;
+        }
+
+        body.dark-mode .bg-green-100,
+        body.dark-mode .bg-orange-100,
+        body.dark-mode .bg-yellow-100,
+        body.dark-mode .bg-teal-100,
+        body.dark-mode .bg-cyan-100,
+        body.dark-mode .bg-indigo-100,
+        body.dark-mode .bg-pink-100,
+        body.dark-mode .bg-amber-100,
+        body.dark-mode .bg-lime-100 {
+            background-color: #1e3a5f !important;
+        }
+
+        body.dark-mode .text-green-700,
+        body.dark-mode .text-orange-700,
+        body.dark-mode .text-yellow-700,
+        body.dark-mode .text-teal-700,
+        body.dark-mode .text-cyan-700,
+        body.dark-mode .text-indigo-700,
+        body.dark-mode .text-pink-700,
+        body.dark-mode .text-amber-700,
+        body.dark-mode .text-lime-700 {
+            color: #60a5fa !important;
+        }
+
+        /* Gradient background for Fiverr section */
+        body.dark-mode .bg-gradient-to-r {
+            background: linear-gradient(to right, #1e3a5f, #1e3a5f) !important;
+        }
+
+        /* Cards/Project containers */
+        body.dark-mode .border-gray-100 {
+            border-color: #334155 !important;
+        }
+
+        body.dark-mode .hover\:shadow-lg:hover {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+        }
+
+        body.dark-mode .hover\:scale-105:hover {
+            transform: scale(1.05);
+        }
+
+        /* Specific dark mode styles for Fiverr section gradient */
+        body.dark-mode .from-green-50 {
+            background: linear-gradient(to right, #0f5d3e, #0d5a3e) !important;
+        }
+
+        body.dark-mode .to-green-100 {
+            background: inherit !important;
+        }
+
+        body.dark-mode .border-green-200 {
+            border-color: #1e5a3f !important;
+        }
+
+        /* Green button in dark mode */
+        body.dark-mode .bg-green-600 {
+            background-color: #059669 !important;
+        }
+
+        body.dark-mode .hover\:bg-green-700:hover {
+            background-color: #047857 !important;
+        }
+
+        /* Text visibility in dark mode */
+        body.dark-mode .text-gray-700,
+        body.dark-mode .text-gray-600 {
+            color: #cbd5e1 !important;
+        }
+
+        body.dark-mode h1,
+        body.dark-mode h2,
+        body.dark-mode h3,
+        body.dark-mode h4,
+        body.dark-mode h5 {
+            color: #f1f5f9 !important;
+        }
+
+        /* Back button styling */
+        .back-button {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.75rem 1.5rem;
+            background-color: #1e40af;
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            background-color: #1e3a8a;
+            transform: translateX(-5px);
+        }
+
+        body.dark-mode .back-button {
+            background-color: #3b82f6;
+        }
+
+        body.dark-mode .back-button:hover {
+            background-color: #1e40af;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+    <nav class="bg-slate-900 text-white p-4 sticky top-0 z-50 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold tracking-tight">Ing. Luis Eduardo Escareño Fernández</h1>
+            <div class="flex items-center gap-4">
+                <ul class="flex space-x-6">
+                    <li><a href="#sobre-mi" class="hover:text-blue-400" data-lang="nav-about">Sobre mí</a></li>
+                    <li><a href="#academico" class="hover:text-blue-400" data-lang="nav-academic">Académico</a></li>
+                    <li><a href="#proyectos" class="hover:text-blue-400" data-lang="nav-projects">Proyectos</a></li>
+                    <li><a href="#fiverr" class="hover:text-blue-400" data-lang="nav-fiverr">Fiverr</a></li>
+                    <li><a href="#articulos" class="hover:text-blue-400" data-lang="nav-articles">Artículos</a></li>
+                </ul>
+                <div class="flex gap-2 border-l border-slate-600 pl-4">
+                    <button onclick="changeLanguage('es')" id="btn-es" class="px-3 py-1 rounded bg-blue-600 text-white text-sm font-semibold hover:bg-blue-500 transition">ES</button>
+                    <button onclick="changeLanguage('en')" id="btn-en" class="px-3 py-1 rounded bg-slate-700 text-white text-sm hover:bg-slate-600 transition">EN</button>
+                </div>
+                <button id="theme-toggle" onclick="toggleTheme()" class="px-3 py-1 rounded bg-slate-700 hover:bg-slate-600 transition text-sm" title="Cambiar tema">
+                    🌙 Oscuro
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <header id="sobre-mi" class="py-20 bg-white">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row items-center">
+            <div class="md:w-2/3">
+                <h2 class="text-4xl font-extrabold text-slate-900 mb-4" data-lang="header-title">Ingeniero en Mecatrónica</h2>
+                <p class="text-lg leading-relaxed mb-6 text-gray-600" data-lang="header-desc">
+                    Ingeniero en Mecatrónica, con experiencia en más de 20 proyectos internacionales de hardware y diseño de PCBs. Apasionado por la innovación tecnológica y la creación de soluciones eficientes 
+                    en el ámbito de los sistemas embebidos y robótica. Mi objetivo es seguir creciendo profesionalmente y contribuir al desarrollo de tecnologías que mejoren la calidad de vida.
+                </p>
+                <div class="flex space-x-4">
+                    <a href="CV.pdf" download class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition" data-lang="btn-cv">Descargar mi CV (PDF)</a>
+                    <a href="https://github.com/luisescareno18" class="text-2xl text-slate-800 hover:text-blue-600"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="academico" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <h3 class="text-3xl font-bold mb-8 border-b-2 border-blue-500 inline-block" data-lang="section-academic">Formación Académica</h3>
+            <div class="space-y-6">
+                <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-blue-500">
+                    <span class="text-blue-600 font-bold">2020 - 2025</span>
+                    <h4 class="text-xl font-bold" data-lang="degree-title">Ingeniería en Mecatrónica</h4>
+                    <p class="text-gray-500" data-lang="degree-school">Unidad Profesional Interdisciplinaria de Ingeniería campus Zacatecas - Instituto Politécnico Nacional - Zacatecas, México</p>
+                </div>
+
+                <!-- Certificados SOLIDWORKS -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-red-500">
+                    <h4 class="text-xl font-bold mb-6" data-lang="cert-solidworks">Certificados SOLIDWORKS</h4>
+                    
+                    <!-- Certificados Asociado -->
+                    <div class="mb-6">
+                        <h5 class="font-semibold text-lg text-gray-700 mb-3 flex items-center gap-2">
+                            <span class="w-3 h-3 bg-blue-500 rounded-full"></span> <span data-lang="cert-associate">Asociado</span>
+                        </h5>
+                        <div class="space-y-2 pl-5">
+                            <a href="Certificado CSWA.pdf" target="_blank" class="flex items-center gap-3 p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition cursor-pointer border border-blue-200">
+                                <i class="fas fa-certificate text-blue-600"></i>
+                                <div>
+                                    <p class="font-semibold text-gray-800">Mechanical Design</p>
+                                    <p class="text-sm text-gray-500">Ver PDF</p>
+                                </div>
+                            </a>
+                            <a href="Certificado CSWA-AM.pdf" target="_blank" class="flex items-center gap-3 p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition cursor-pointer border border-blue-200">
+                                <i class="fas fa-certificate text-blue-600"></i>
+                                <div>
+                                    <p class="font-semibold text-gray-800">Additive Manufacturing</p>
+                                    <p class="text-sm text-gray-500">Ver PDF</p>
+                                </div>
+                            </a>
+                            <a href="Certificado CSWA-ED.pdf" target="_blank" class="flex items-center gap-3 p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition cursor-pointer border border-blue-200">
+                                <i class="fas fa-certificate text-blue-600"></i>
+                                <div>
+                                    <p class="font-semibold text-gray-800">Electrical Design</p>
+                                    <p class="text-sm text-gray-500">Ver PDF</p>
+                                </div>
+                            </a>
+                            <a href="Certificado CSWA-S.pdf" target="_blank" class="flex items-center gap-3 p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition cursor-pointer border border-blue-200">
+                                <i class="fas fa-certificate text-blue-600"></i>
+                                <div>
+                                    <p class="font-semibold text-gray-800">Simulation</p>
+                                    <p class="text-sm text-gray-500">Ver PDF</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Certificados Profesional -->
+                    <div>
+                        <h5 class="font-semibold text-lg text-gray-700 mb-3 flex items-center gap-2">
+                            <span class="w-3 h-3 bg-purple-500 rounded-full"></span> <span data-lang="cert-professional">Profesional</span>
+                        </h5>
+                        <div class="space-y-2 pl-5">
+                            <a href="Certificado CSWP.pdf" target="_blank" class="flex items-center gap-3 p-3 bg-purple-50 rounded-lg hover:bg-purple-100 transition cursor-pointer border border-purple-200">
+                                <i class="fas fa-certificate text-purple-600"></i>
+                                <div>
+                                    <p class="font-semibold text-gray-800">Mechanical Design</p>
+                                    <p class="text-sm text-gray-500">Ver PDF</p>
+                                </div>
+                            </a>
+                            <a href="Certificado CSWP-SM.pdf" target="_blank" class="flex items-center gap-3 p-3 bg-purple-50 rounded-lg hover:bg-purple-100 transition cursor-pointer border border-purple-200">
+                                <i class="fas fa-certificate text-purple-600"></i>
+                                <div>
+                                    <p class="font-semibold text-gray-800">Sheet Metal</p>
+                                    <p class="text-sm text-gray-500">Ver PDF</p>
+                                </div>
+                            </a>
+                            <a href="Certificado CSWPA-DT.pdf" target="_blank" class="flex items-center gap-3 p-3 bg-purple-50 rounded-lg hover:bg-purple-100 transition cursor-pointer border border-purple-200">
+                                <i class="fas fa-certificate text-purple-600"></i>
+                                <div>
+                                    <p class="font-semibold text-gray-800">Drawing Tools</p>
+                                    <p class="text-sm text-gray-500">Ver PDF</p>
+                                </div>
+                            </a>
+                            <a href="Certificado CSWPA-SU.pdf" target="_blank" class="flex items-center gap-3 p-3 bg-purple-50 rounded-lg hover:bg-purple-100 transition cursor-pointer border border-purple-200">
+                                <i class="fas fa-certificate text-purple-600"></i>
+                                <div>
+                                    <p class="font-semibold text-gray-800">Surfaces</p>
+                                    <p class="text-sm text-gray-500">Ver PDF</p>
+                                </div>
+                            </a>
+                            <a href="Certificado CSWPA-WD.pdf" target="_blank" class="flex items-center gap-3 p-3 bg-purple-50 rounded-lg hover:bg-purple-100 transition cursor-pointer border border-purple-200">
+                                <i class="fas fa-certificate text-purple-600"></i>
+                                <div>
+                                    <p class="font-semibold text-gray-800">Weldments</p>
+                                    <p class="text-sm text-gray-500">Ver PDF</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center border-t border-gray-200 pt-8 mt-8">
+                <button class="back-button" onclick="scrollToSection('sobre-mi')"><i class="fas fa-arrow-up mr-2"></i><span data-lang="btn-menu">Menú Principal</span></button>
+            </div>
+        </div>
+    </section>
+
+    <section id="proyectos" class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <h3 class="text-3xl font-bold mb-12 text-center" data-lang="section-projects">Proyectos Destacados</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:scale-105 transition-transform">
+                    <!-- Imagen del proyecto -->
+                    <img src="Vending_machine.png" alt="Smart Vending Machine PCB" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h4 class="font-bold text-xl mb-2">Máquina expendedora PCB</h4>
+                        <p class="text-gray-600 text-sm mb-4">Diseño de placa multicapa con integración de ESP32 y sensores industriales.</p>
+                        <div class="mb-4">
+                            <span class="bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded">Easyeda</span>
+                            <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded">Freelance</span>
+                        </div>
+                        <!-- Botones para ver esquemático -->
+                        <div class="flex gap-2">
+                            <a href="Schematic_Vending-machine.pdf" target="_blank" class="flex-1 text-center bg-slate-800 text-white px-3 py-2 rounded text-sm hover:bg-slate-700 transition">
+                                <i class="fas fa-file-pdf mr-1"></i> Esquemático
+                            </a>
+                            <a href="proyecto1-detalles.jpg" target="_blank" class="flex-1 text-center bg-blue-600 text-white px-3 py-2 rounded text-sm hover:bg-blue-700 transition">
+                                <i class="fas fa-image mr-1"></i> Ver más
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:scale-105 transition-transform">
+                    <img src="Battery_Circuit.png" alt="Circuito con Bateria" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h4 class="font-bold text-xl mb-2">Circuito con Bateria PCB</h4>
+                        <p class="text-gray-600 text-sm mb-4">Diseño de circuito con batería integrada para aplicaciones portátiles.</p>
+                        <div class="mb-4">
+                            <span class="bg-purple-100 text-purple-700 text-xs px-2 py-1 rounded">18650 Battery</span>
+                            <span class="bg-orange-100 text-orange-700 text-xs px-2 py-1 rounded">IoT</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <a href="esquematico2.pdf" target="_blank" class="flex-1 text-center bg-slate-800 text-white px-3 py-2 rounded text-sm hover:bg-slate-700 transition">
+                                <i class="fas fa-file-pdf mr-1"></i> Esquemático
+                            </a>
+                            <a href="proyecto2-detalles.jpg" target="_blank" class="flex-1 text-center bg-blue-600 text-white px-3 py-2 rounded text-sm hover:bg-blue-700 transition">
+                                <i class="fas fa-image mr-1"></i> Ver más
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:scale-105 transition-transform">
+                    <img src="proyecto3.jpg" alt="Robot Móvil Autónomo" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h4 class="font-bold text-xl mb-2">Robot Móvil Autónomo</h4>
+                        <p class="text-gray-600 text-sm mb-4">Plataforma robótica con navegación por sensores ultrasonido y encoders.</p>
+                        <div class="mb-4">
+                            <span class="bg-red-100 text-red-700 text-xs px-2 py-1 rounded">Arduino</span>
+                            <span class="bg-yellow-100 text-yellow-700 text-xs px-2 py-1 rounded">Robótica</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <a href="esquematico3.pdf" target="_blank" class="flex-1 text-center bg-slate-800 text-white px-3 py-2 rounded text-sm hover:bg-slate-700 transition">
+                                <i class="fas fa-file-pdf mr-1"></i> Esquemático
+                            </a>
+                            <a href="proyecto3-detalles.jpg" target="_blank" class="flex-1 text-center bg-blue-600 text-white px-3 py-2 rounded text-sm hover:bg-blue-700 transition">
+                                <i class="fas fa-image mr-1"></i> Ver más
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:scale-105 transition-transform">
+                    <img src="proyecto4.jpg" alt="Estación Meteorológica" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h4 class="font-bold text-xl mb-2">Estación Meteorológica</h4>
+                        <p class="text-gray-600 text-sm mb-4">Sistema de monitoreo ambiental con transmisión de datos en tiempo real.</p>
+                        <div class="mb-4">
+                            <span class="bg-teal-100 text-teal-700 text-xs px-2 py-1 rounded">STM32</span>
+                            <span class="bg-cyan-100 text-cyan-700 text-xs px-2 py-1 rounded">Sensores</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <a href="esquematico4.pdf" target="_blank" class="flex-1 text-center bg-slate-800 text-white px-3 py-2 rounded text-sm hover:bg-slate-700 transition">
+                                <i class="fas fa-file-pdf mr-1"></i> Esquemático
+                            </a>
+                            <a href="proyecto4-detalles.jpg" target="_blank" class="flex-1 text-center bg-blue-600 text-white px-3 py-2 rounded text-sm hover:bg-blue-700 transition">
+                                <i class="fas fa-image mr-1"></i> Ver más
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:scale-105 transition-transform">
+                    <img src="proyecto5.jpg" alt="Sistema de Control de Acceso" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h4 class="font-bold text-xl mb-2">Control de Acceso RFID</h4>
+                        <p class="text-gray-600 text-sm mb-4">Sistema de seguridad con autenticación por tarjeta y registro en base de datos.</p>
+                        <div class="mb-4">
+                            <span class="bg-indigo-100 text-indigo-700 text-xs px-2 py-1 rounded">Raspberry Pi</span>
+                            <span class="bg-pink-100 text-pink-700 text-xs px-2 py-1 rounded">Seguridad</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <a href="esquematico5.pdf" target="_blank" class="flex-1 text-center bg-slate-800 text-white px-3 py-2 rounded text-sm hover:bg-slate-700 transition">
+                                <i class="fas fa-file-pdf mr-1"></i> Esquemático
+                            </a>
+                            <a href="proyecto5-detalles.jpg" target="_blank" class="flex-1 text-center bg-blue-600 text-white px-3 py-2 rounded text-sm hover:bg-blue-700 transition">
+                                <i class="fas fa-image mr-1"></i> Ver más
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:scale-105 transition-transform">
+                    <img src="proyecto6.jpg" alt="Brazo Robótico Pick and Place" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h4 class="font-bold text-xl mb-2">Brazo Robótico Pick & Place</h4>
+                        <p class="text-gray-600 text-sm mb-4">Brazo de 4 DOF con control por cinemática inversa para automatización industrial.</p>
+                        <div class="mb-4">
+                            <span class="bg-amber-100 text-amber-700 text-xs px-2 py-1 rounded">Servos</span>
+                            <span class="bg-lime-100 text-lime-700 text-xs px-2 py-1 rounded">Automatización</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <a href="esquematico6.pdf" target="_blank" class="flex-1 text-center bg-slate-800 text-white px-3 py-2 rounded text-sm hover:bg-slate-700 transition">
+                                <i class="fas fa-file-pdf mr-1"></i> Esquemático
+                            </a>
+                            <a href="proyecto6-detalles.jpg" target="_blank" class="flex-1 text-center bg-blue-600 text-white px-3 py-2 rounded text-sm hover:bg-blue-700 transition">
+                                <i class="fas fa-image mr-1"></i> Ver más
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center border-t border-gray-200 pt-8 mt-8">
+                <button class="back-button" onclick="scrollToSection('sobre-mi')"><i class="fas fa-arrow-up mr-2"></i><span data-lang="btn-menu">Menú Principal</span></button>
+            </div>
+        </div>
+    </section>
+
+    <section id="articulos" class="py-16 bg-slate-900 text-white">
+        <div class="container mx-auto px-6">
+            <h3 class="text-3xl font-bold mb-8" data-lang="section-articles">Artículos y Divulgación</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <article class="border-b border-slate-700 pb-6">
+                    <h4 class="text-xl font-semibold hover:text-blue-400 cursor-pointer transition">"Deployment of an Agricultural Mobile Robot for the Detection of Damaged Areas in Bean Crops Using Artificial Intelligence"</h4>
+                    <p class="text-slate-400 mt-2">Presentado en la 5ta Conferencia Internacional de Tecnologías Electrica, de Computación y Energía en París, Francia 2025</p>
+                    <a href="#" class="text-blue-400 text-sm mt-4 block italic" data-lang="read-more">Leer más →</a>
+                </article>
+            </div>
+            <div class="text-center border-t border-slate-700 pt-8 mt-8">
+                <button class="back-button" onclick="scrollToSection('sobre-mi')"><i class="fas fa-arrow-up mr-2"></i><span data-lang="btn-menu">Menú Principal</span></button>
+            </div>
+        </div>
+    </section>
+
+    <section id="fiverr" class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <h3 class="text-3xl font-bold mb-12 text-center" data-lang="section-fiverr">Servicios en Fiverr</h3>
+            
+            <!-- Descripción y enlace principal -->
+            <div class="bg-gradient-to-r from-green-50 to-green-100 border border-green-200 rounded-xl p-8 mb-12 text-center">
+                <p class="text-lg text-gray-700 mb-6" data-lang="fiverr-desc">Diseño de PCBs profesional con experiencia en proyectos internacionales</p>
+                <a href="https://es.fiverr.com/users/luis_escareno" target="_blank" class="inline-block bg-green-600 text-white px-8 py-3 rounded-lg hover:bg-green-700 transition font-semibold text-lg">
+                    <i class="fas fa-arrow-right mr-2"></i><span data-lang="fiverr-link">Ir a mi perfil en Fiverr</span>
+                </a>
+            </div>
+
+            <!-- Servicios destacados -->
+            <h4 class="text-2xl font-bold mb-8 text-gray-800">Servicios Principales</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200 hover:shadow-lg transition">
+                    <div class="text-4xl mb-4">📋</div>
+                    <h5 class="font-bold text-lg mb-3 text-gray-800">Diseño de Esquemáticos</h5>
+                    <p class="text-gray-600 text-sm">Esquemáticos profesionales en EasyEDA, Altium o KiCAD con componentes optimizados para tus proyectos.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200 hover:shadow-lg transition">
+                    <div class="text-4xl mb-4">🔌</div>
+                    <h5 class="font-bold text-lg mb-3 text-gray-800">Diseño de PCBs</h5>
+                    <p class="text-gray-600 text-sm">Placas multicapa optimizadas con enrutamiento profesional, design rules y simulación eléctrica.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200 hover:shadow-lg transition">
+                    <div class="text-4xl mb-4">🎯</div>
+                    <h5 class="font-bold text-lg mb-3 text-gray-800">Soporte Técnico</h5>
+                    <p class="text-gray-600 text-sm">Asesoría en selección de componentes, cálculos de potencia y optimización de circuitos.</p>
+                </div>
+            </div>
+
+            <!-- Vista previa del perfil -->
+            <h4 class="text-2xl font-bold mb-8 text-gray-800" data-lang="fiverr-preview-title">Vista previa del perfil y reseñas</h4>
+            <div class="bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden">
+                <div class="p-5 border-b border-gray-200 flex flex-col md:flex-row md:items-center md:justify-between gap-4 bg-gray-50">
+                    <div>
+                        <p class="text-sm uppercase tracking-widest text-gray-500 mb-1" data-lang="fiverr-preview-label">Perfil público de Fiverr</p>
+                        <p class="text-gray-700" data-lang="fiverr-preview-note">Las reseñas aparecen en tu perfil público y aquí se muestran mediante una vista previa directa.</p>
+                    </div>
+                    <a href="https://es.fiverr.com/luis_escareno?public_mode=true" target="_blank" class="inline-flex items-center justify-center bg-green-600 text-white px-5 py-3 rounded-lg hover:bg-green-700 transition font-semibold">
+                        <i class="fas fa-external-link-alt mr-2"></i><span data-lang="fiverr-open-profile">Abrir perfil de Fiverr</span>
+                    </a>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-[1.45fr_0.85fr] gap-0">
+                    <div class="bg-slate-100">
+                        <iframe
+                            src="https://es.fiverr.com/luis_escareno?public_mode=true"
+                            title="Perfil de Fiverr de Luis Escareño"
+                            class="w-full h-[780px] border-0"
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                    <div class="p-6 bg-white border-t lg:border-t-0 lg:border-l border-gray-200">
+                        <h5 class="text-xl font-bold text-gray-800 mb-4" data-lang="fiverr-highlights">Lo que verán en mi perfil</h5>
+                        <ul class="space-y-4 text-gray-600">
+                            <li class="flex items-start gap-3">
+                                <span class="text-green-600 mt-1"><i class="fas fa-check-circle"></i></span>
+                                <span data-lang="fiverr-highlight-1">Servicios de diseño de PCB y esquemáticos para proyectos electrónicos.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-green-600 mt-1"><i class="fas fa-check-circle"></i></span>
+                                <span data-lang="fiverr-highlight-2">Reseñas reales de clientes y calificaciones visibles en tu perfil público.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-green-600 mt-1"><i class="fas fa-check-circle"></i></span>
+                                <span data-lang="fiverr-highlight-3">Acceso rápido para contratarte o revisar tu oferta completa.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center border-t border-gray-200 pt-8 mt-8">
+                <button class="back-button" onclick="scrollToSection('sobre-mi')"><i class="fas fa-arrow-up mr-2"></i><span data-lang="btn-menu">Menú Principal</span></button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-white py-8 text-center border-t border-gray-200">
+        <div class="container mx-auto px-6">
+            <p class="text-gray-500 mb-6" data-lang="footer">© 2026 - Creado con pasión por la tecnología y programación</p>
+            <button class="back-button" onclick="scrollToSection('sobre-mi')"><i class="fas fa-arrow-up mr-2"></i><span data-lang="btn-menu">Menú Principal</span></button>
+        </div>
+    </footer>
+
+    <script>
+        // Función para desplazarse horizontalmente a una sección
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'nearest',
+                    inline: 'start'
+                });
+            }
+        }
+
+        // Sistema de tema claro/oscuro
+        function setTheme(theme) {
+            const isDark = theme === 'dark';
+            document.body.classList.toggle('dark-mode', isDark);
+            localStorage.setItem('theme', theme);
+
+            const themeButton = document.getElementById('theme-toggle');
+            if (themeButton) {
+                themeButton.textContent = isDark ? '☀︎' : '⏾';
+                themeButton.title = isDark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro';
+            }
+        }
+
+        function toggleTheme() {
+            const isDark = document.body.classList.contains('dark-mode');
+            setTheme(isDark ? 'light' : 'dark');
+        }
+
+        // Sistema de traducción
+        const translations = {
+            es: {
+                'nav-about': 'Sobre mí',
+                'nav-academic': 'Académico',
+                'nav-projects': 'Proyectos',
+                'nav-fiverr': 'Fiverr',
+                'nav-articles': 'Artículos',
+                'header-title': 'Ingeniero en Mecatrónica',
+                'header-desc': 'Ingeniero en Mecatrónica, con experiencia en más de 20 proyectos internacionales de hardware y diseño de PCBs. Apasionado por la innovación tecnológica y la creación de soluciones eficientes en el ámbito de los sistemas embebidos y robótica. Mi objetivo es seguir creciendo profesionalmente y contribuir al desarrollo de tecnologías que mejoren la calidad de vida.',
+                'btn-cv': 'Descargar mi CV (PDF)',
+                'section-academic': 'Formación Académica',
+                'degree-title': 'Ingeniería en Mecatrónica',
+                'degree-school': 'Unidad Profesional Interdisciplinaria de Ingeniería campus Zacatecas - Instituto Politécnico Nacional - Zacatecas, México',
+                'cert-solidworks': 'Certificados SOLIDWORKS',
+                'cert-associate': 'Asociado',
+                'cert-professional': 'Profesional',
+                'btn-menu': 'Menú Principal',
+                'section-projects': 'Proyectos Destacados',
+                'section-articles': 'Artículos y Divulgación',
+                'section-fiverr': 'Servicios en Fiverr',
+                'fiverr-desc': 'Diseño de PCBs profesional con experiencia en proyectos internacionales',
+                'fiverr-rating': 'Calificación',
+                'fiverr-link': 'Ir a mi perfil en Fiverr',
+                'fiverr-preview-title': 'Vista previa del perfil y reseñas',
+                'fiverr-preview-label': 'Perfil público de Fiverr',
+                'fiverr-preview-note': 'Las reseñas aparecen en tu perfil público y aquí se muestran mediante una vista previa directa.',
+                'fiverr-open-profile': 'Abrir perfil de Fiverr',
+                'fiverr-highlights': 'Lo que verán en mi perfil',
+                'fiverr-highlight-1': 'Servicios de diseño de PCB y esquemáticos para proyectos electrónicos.',
+                'fiverr-highlight-2': 'Reseñas reales de clientes y calificaciones visibles en tu perfil público.',
+                'fiverr-highlight-3': 'Acceso rápido para contratarte o revisar tu oferta completa.',
+                'read-more': 'Leer más →',
+                'footer': '© 2026 - Creado con pasión por la tecnología y programación'
+            },
+            en: {
+                'nav-about': 'About Me',
+                'nav-academic': 'Academic',
+                'nav-projects': 'Projects',
+                'nav-fiverr': 'Fiverr',
+                'nav-articles': 'Articles',
+                'header-title': 'Mechatronics Engineer',
+                'header-desc': 'Mechatronics Engineer with experience in over 20 international hardware projects and PCB design. Passionate about technological innovation and creating efficient solutions in the field of embedded systems and robotics. My goal is to continue growing professionally and contribute to the development of technologies that improve quality of life.',
+                'btn-cv': 'Download my CV (PDF)',
+                'section-academic': 'Academic Background',
+                'degree-title': 'Mechatronics Engineering',
+                'degree-school': 'Interdisciplinary Professional Unit of Engineering Zacatecas Campus - National Polytechnic Institute - Zacatecas, Mexico',
+                'cert-solidworks': 'SOLIDWORKS Certificates',
+                'cert-associate': 'Associate',
+                'cert-professional': 'Professional',
+                'btn-menu': 'Main Menu',
+                'section-projects': 'Featured Projects',
+                'section-articles': 'Articles and Outreach',
+                'section-fiverr': 'Fiverr Services',
+                'fiverr-desc': 'Professional PCB design with experience in international projects',
+                'fiverr-rating': 'Rating',
+                'fiverr-link': 'Go to my Fiverr profile',
+                'fiverr-preview-title': 'Profile and review preview',
+                'fiverr-preview-label': 'Public Fiverr profile',
+                'fiverr-preview-note': 'Reviews appear on your public profile and are shown here through a direct preview.',
+                'fiverr-open-profile': 'Open Fiverr profile',
+                'fiverr-highlights': 'What visitors will see',
+                'fiverr-highlight-1': 'PCB design and schematic services for electronics projects.',
+                'fiverr-highlight-2': 'Real client reviews and ratings visible on your public profile.',
+                'fiverr-highlight-3': 'Quick access to hire you or review your full offer.',
+                'read-more': 'Read more →',
+                'footer': '© 2026 - Created with passion for technology and programming'
+            }
+        };
+
+        // Función para cambiar idioma
+        function changeLanguage(lang) {
+            // Guardar preferencia
+            localStorage.setItem('language', lang);
+            
+            // Actualizar atributo HTML
+            document.documentElement.lang = lang;
+            
+            // Cambiar todos los textos
+            document.querySelectorAll('[data-lang]').forEach(element => {
+                const key = element.getAttribute('data-lang');
+                if (translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+            
+            // Actualizar botones activos
+            document.getElementById('btn-es').classList.toggle('bg-blue-600', lang === 'es');
+            document.getElementById('btn-es').classList.toggle('bg-slate-700', lang !== 'es');
+            document.getElementById('btn-en').classList.toggle('bg-blue-600', lang === 'en');
+            document.getElementById('btn-en').classList.toggle('bg-slate-700', lang !== 'en');
+        }
+
+        // Cargar idioma guardado al inicio
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                setTheme(savedTheme);
+            } else {
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                setTheme(prefersDark ? 'dark' : 'light');
+            }
+
+            const savedLang = localStorage.getItem('language') || 'es';
+            if (savedLang !== 'es') {
+                changeLanguage(savedLang);
+            }
+        });
+    </script>
+
+</body>
+</html>

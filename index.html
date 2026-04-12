@@ -335,6 +335,7 @@
                     <li><a href="#proyectos" class="hover:text-blue-400" data-lang="nav-projects">Proyectos</a></li>
                     <li><a href="#fiverr" class="hover:text-blue-400" data-lang="nav-fiverr">Fiverr</a></li>
                     <li><a href="#articulos" class="hover:text-blue-400" data-lang="nav-articles">Artículos</a></li>
+                    <li><a href="#contacto" class="hover:text-blue-400" data-lang="nav-contact">Contacto</a></li>
                 </ul>
                 <div class="flex gap-2 border-l border-slate-600 pl-4">
                     <button onclick="changeLanguage('es')" id="btn-es" class="px-3 py-1 rounded bg-blue-600 text-white text-sm font-semibold hover:bg-blue-500 transition">ES</button>
@@ -737,6 +738,22 @@
         </div>
     </section>
 
+    <section id="contacto" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <h3 class="text-3xl font-bold mb-8 text-center" data-lang="section-contact">Contacto</h3>
+            <div class="max-w-3xl mx-auto bg-white rounded-2xl shadow-lg border border-gray-200 p-8 text-center">
+                <p class="text-lg text-gray-700 mb-6" data-lang="contact-desc">Estoy disponible para cotizaciones, trabajo y nuevos proyectos.</p>
+                <a href="mailto:luisescarenofernandez@gmail.com" class="inline-flex items-center gap-3 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition font-semibold">
+                    <i class="fas fa-envelope"></i>
+                    <span data-lang="contact-email-label">luisescarenofernandez@gmail.com</span>
+                </a>
+            </div>
+            <div class="text-center border-t border-gray-200 pt-8 mt-8">
+                <button class="back-button" onclick="scrollToSection('sobre-mi')"><i class="fas fa-arrow-up mr-2"></i><span data-lang="btn-menu">Menú Principal</span></button>
+            </div>
+        </div>
+    </section>
+
     <footer class="bg-white py-8 text-center border-t border-gray-200">
         <div class="container mx-auto px-6">
             <p class="text-gray-500 mb-6" data-lang="footer">© 2026 - Creado con pasión por la tecnología y programación</p>
@@ -783,6 +800,7 @@
                 'nav-projects': 'Proyectos',
                 'nav-fiverr': 'Fiverr',
                 'nav-articles': 'Artículos',
+                'nav-contact': 'Contacto',
                 'header-title': 'Ingeniero en Mecatrónica',
                 'header-desc': 'Ingeniero en Mecatrónica, con experiencia en más de 20 proyectos internacionales de hardware y diseño de PCBs. Apasionado por la innovación tecnológica y la creación de soluciones eficientes en el ámbito de los sistemas embebidos y robótica. Mi objetivo es seguir creciendo profesionalmente y contribuir al desarrollo de tecnologías que mejoren la calidad de vida.',
                 'about-kicker': 'Perfil profesional',
@@ -810,6 +828,9 @@
                 'section-projects': 'Proyectos Destacados',
                 'section-articles': 'Artículos y Divulgación',
                 'section-fiverr': 'Servicios en Fiverr',
+                'section-contact': 'Contacto',
+                'contact-desc': 'Estoy disponible para cotizaciones, trabajo y nuevos proyectos.',
+                'contact-email-label': 'luisescarenofernandez@gmail.com',
                 'fiverr-desc': 'Diseño de PCBs profesional con experiencia en proyectos internacionales',
                 'fiverr-rating': 'Calificación',
                 'fiverr-link': 'Ir a mi perfil en Fiverr',
@@ -830,6 +851,7 @@
                 'nav-projects': 'Projects',
                 'nav-fiverr': 'Fiverr',
                 'nav-articles': 'Articles',
+                'nav-contact': 'Contact',
                 'header-title': 'Mechatronics Engineer',
                 'header-desc': 'Mechatronics Engineer with experience in over 20 international hardware projects and PCB design. Passionate about technological innovation and creating efficient solutions in the field of embedded systems and robotics. My goal is to continue growing professionally and contribute to the development of technologies that improve quality of life.',
                 'about-kicker': 'Professional profile',
@@ -857,6 +879,9 @@
                 'section-projects': 'Featured Projects',
                 'section-articles': 'Articles and Outreach',
                 'section-fiverr': 'Fiverr Services',
+                'section-contact': 'Contact',
+                'contact-desc': 'I am available for quotes, work opportunities, and new projects.',
+                'contact-email-label': 'luisescarenofernandez@gmail.com',
                 'fiverr-desc': 'Professional PCB design with experience in international projects',
                 'fiverr-rating': 'Rating',
                 'fiverr-link': 'Go to my Fiverr profile',
@@ -998,6 +1023,9 @@
             document.querySelectorAll('a[href]').forEach(markMissingLocalAsset);
         });
     </script>
+
+</body>
+</html>
 
 </body>
 </html>

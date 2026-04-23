@@ -368,13 +368,41 @@
                             <p class="text-xl font-bold text-slate-900">PCB Design</p>
                         </div>
                         <div class="bg-white/80 rounded-xl border border-blue-100 p-3 shadow-sm">
-                            <p class="text-xs text-gray-500" data-lang="metric3-label">Servicios</p>
-                            <p class="text-xl font-bold text-slate-900" data-lang="metric3-value">Globales</p>
+                            <p class="text-xs text-gray-500" data-lang="metric3-label">Clientes en</p>
+                            <p class="text-xl font-bold text-slate-900" data-lang="metric3-value">11 países</p>
                         </div>
                         <div class="bg-white/80 rounded-xl border border-blue-100 p-3 shadow-sm">
                             <p class="text-xs text-gray-500" data-lang="metric4-label">Modalidad</p>
                             <p class="text-xl font-bold text-slate-900" data-lang="metric4-value">Freelance</p>
                         </div>
+                    </div>
+                    
+                    <!-- Countries section -->
+                    <div class="bg-gradient-to-r from-blue-50 to-slate-50 rounded-xl border border-blue-100 p-5 mb-7">
+                        <p class="text-sm font-semibold text-slate-700 mb-3" data-lang="countries-title">Clientes principales por país:</p>
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-gray-700"><span class="text-lg mr-2">🇺🇸</span><span data-lang="country-usa">Estados Unidos</span></span>
+                                <span class="bg-blue-600 text-white px-2 py-1 rounded font-bold">7</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-gray-700"><span class="text-lg mr-2">🇲🇽</span><span data-lang="country-mexico">México</span></span>
+                                <span class="bg-blue-600 text-white px-2 py-1 rounded font-bold">6</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-gray-700"><span class="text-lg mr-2">🇩🇪</span><span data-lang="country-germany">Alemania</span></span>
+                                <span class="bg-blue-600 text-white px-2 py-1 rounded font-bold">3</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-gray-700"><span class="text-lg mr-2">🇫🇷</span><span data-lang="country-france">Francia</span></span>
+                                <span class="bg-blue-600 text-white px-2 py-1 rounded font-bold">3</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-gray-700"><span class="text-lg mr-2">🌍</span><span data-lang="country-others">Otros (7)</span></span>
+                                <span class="bg-blue-600 text-white px-2 py-1 rounded font-bold">10</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-3" data-lang="countries-total">Total: 29 clientes internacionales</p>
                     </div>
                     <div class="flex flex-wrap items-center gap-4">
                         <a id="cv-download-button" href="CV.pdf" download="CV.pdf" data-cv-es="CV.pdf" data-cv-en="CV_EN.pdf" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition" data-lang="btn-cv">Descargar mi CV (PDF)</a>
@@ -649,8 +677,9 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
                 <article class="border-b border-slate-700 pb-6">
                     <h4 class="text-xl font-semibold hover:text-blue-400 cursor-pointer transition">"Deployment of an Agricultural Mobile Robot for the Detection of Damaged Areas in Bean Crops Using Artificial Intelligence"</h4>
+                    <p class="text-slate-300 mt-2 text-sm"><strong>Autores:</strong> Rafael Reveles-Martínez, Edgar R. Ruvalcaba Castro, Israel Herrera-Álvarez</p>
                     <p class="text-slate-400 mt-2">Presentado en la 5ta Conferencia Internacional de Tecnologías Electrica, de Computación y Energía en París, Francia 2025</p>
-                    <a href="#" class="text-blue-400 text-sm mt-4 block italic" data-lang="read-more">Leer más →</a>
+                    <a href="https://doi.org/10.1109/ICECET63943.2025.11471958" target="_blank" class="text-blue-400 text-sm mt-4 block italic hover:text-blue-300 transition" data-lang="read-more">Leer más → <i class="fas fa-external-link-alt ml-1"></i></a>
                 </article>
             </div>
             <div class="text-center border-t border-slate-700 pt-8 mt-8">
@@ -807,8 +836,8 @@
                 'metric1-label': 'Experiencia',
                 'metric1-value': '20+ proyectos',
                 'metric2-label': 'Especialidad',
-                'metric3-label': 'Servicios',
-                'metric3-value': 'Globales',
+                'metric3-label': 'Clientes en',
+                'metric3-value': '11 países',
                 'metric4-label': 'Modalidad',
                 'metric4-value': 'Freelance',
                 'about-github': 'Ver GitHub',
@@ -818,6 +847,13 @@
                 'about-chip-3': 'Experto en SolidWorks',
                 'about-cta': 'Ver servicios en Fiverr',
                 'btn-cv': 'Descargar mi CV (PDF)',
+                'countries-title': 'Clientes principales por país:',
+                'country-usa': 'Estados Unidos',
+                'country-mexico': 'México',
+                'country-germany': 'Alemania',
+                'country-france': 'Francia',
+                'country-others': 'Otros (7)',
+                'countries-total': 'Total: 29 clientes internacionales',
                 'section-academic': 'Formación Académica',
                 'degree-title': 'Ingeniería en Mecatrónica',
                 'degree-school': 'Unidad Profesional Interdisciplinaria de Ingeniería campus Zacatecas - Instituto Politécnico Nacional - Zacatecas, México',
@@ -858,8 +894,8 @@
                 'metric1-label': 'Experience',
                 'metric1-value': '20+ projects',
                 'metric2-label': 'Specialty',
-                'metric3-label': 'Services',
-                'metric3-value': 'Worldwide',
+                'metric3-label': 'Clients in',
+                'metric3-value': '11 countries',
                 'metric4-label': 'Work mode',
                 'metric4-value': 'Freelance',
                 'about-github': 'View GitHub',
@@ -869,6 +905,13 @@
                 'about-chip-3': 'SolidWorks Expert',
                 'about-cta': 'View Fiverr services',
                 'btn-cv': 'Download my CV (PDF)',
+                'countries-title': 'Top clients by country:',
+                'country-usa': 'United States',
+                'country-mexico': 'Mexico',
+                'country-germany': 'Germany',
+                'country-france': 'France',
+                'country-others': 'Others (7)',
+                'countries-total': 'Total: 29 international clients',
                 'section-academic': 'Academic Background',
                 'degree-title': 'Mechatronics Engineering',
                 'degree-school': 'Interdisciplinary Professional Unit of Engineering Zacatecas Campus - National Polytechnic Institute - Zacatecas, Mexico',
@@ -1023,9 +1066,6 @@
             document.querySelectorAll('a[href]').forEach(markMissingLocalAsset);
         });
     </script>
-
-</body>
-</html>
 
 </body>
 </html>

@@ -1,1071 +1,971 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Portafolio Profesional</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        /* Horizontal scrolling layout */
-        body {
-            overflow-x: auto;
-            overflow-y: hidden;
-            height: 100vh;
-            white-space: nowrap;
-            margin: 0;
-            padding: 0;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luis Eduardo Escareño — Mechatronics Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root {
+  --bg: #0a0c10;
+  --bg2: #0f1117;
+  --bg3: #141720;
+  --bg4: #1a1e2a;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.12);
+  --text: #e8eaf0;
+  --muted: #6b7280;
+  --accent: #3b82f6;
+  --accent2: #60a5fa;
+  --green: #10b981;
+  --green2: #34d399;
+  --amber: #f59e0b;
+  --purple: #8b5cf6;
+  --nav-h: 60px;
+  --mono: 'DM Mono', monospace;
+  --sans: 'Inter', sans-serif;
+}
 
-        body > *:not(nav):not(script) {
-            display: inline-block;
-            vertical-align: top;
-            width: 100vw;
-            height: calc(100vh - 64px);
-            overflow-y: auto;
-            flex-shrink: 0;
-            white-space: normal;
-            margin: 0;
-            padding-top: 64px;
-        }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 50;
-        }
+html { scroll-behavior: smooth; }
 
-        body.dark-mode {
-            background-color: #0f172a;
-            color: #e2e8f0;
-        }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  overflow-x: hidden;
+}
 
-        body.dark-mode header,
-        body.dark-mode #proyectos,
-        body.dark-mode #fiverr,
-        body.dark-mode footer {
-            background-color: #111827;
-        }
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h);
+  background: rgba(10,12,16,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  z-index: 100;
+  display: flex; align-items: center;
+}
+.nav-inner {
+  width: 100%; max-width: 1200px; margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  font-family: var(--mono);
+  font-size: 13px; font-weight: 700;
+  color: var(--accent2);
+  letter-spacing: 0.02em;
+}
+.nav-logo span { color: var(--muted); }
+.nav-links { display: flex; gap: 0.25rem; align-items: center; }
+.nav-links a {
+  font-size: 13px; color: var(--muted);
+  text-decoration: none; padding: 6px 12px;
+  border-radius: 6px; transition: all 0.2s;
+  font-family: var(--mono);
+}
+.nav-links a:hover { color: var(--text); background: var(--bg4); }
+.nav-controls { display: flex; gap: 8px; align-items: center; margin-left: 1rem; padding-left: 1rem; border-left: 1px solid var(--border); }
+.lang-btn {
+  font-family: var(--mono); font-size: 12px; font-weight: 700;
+  padding: 4px 10px; border-radius: 5px; border: 1px solid var(--border2);
+  cursor: pointer; transition: all 0.2s; background: transparent; color: var(--muted);
+}
+.lang-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.theme-btn {
+  font-size: 14px; padding: 5px 10px; border-radius: 5px;
+  border: 1px solid var(--border2); background: transparent;
+  color: var(--muted); cursor: pointer; transition: all 0.2s;
+}
 
-        body.dark-mode #academico {
-            background-color: #0b1220;
-        }
+/* ── LAYOUT ── */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+section { padding-top: var(--nav-h); }
+.section-inner { padding: 5rem 0; }
 
-        body.dark-mode .bg-white {
-            background-color: #1e293b !important;
-        }
+/* ── HERO ── */
+#sobre-mi .section-inner { padding: 6rem 0 5rem; }
+.hero-grid {
+  display: grid; grid-template-columns: 1fr 380px; gap: 4rem; align-items: start;
+}
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: 12px; color: var(--green2);
+  background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.2);
+  padding: 4px 12px; border-radius: 4px; margin-bottom: 1.25rem;
+}
+.hero-tag::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--green2); animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+h1.hero-title {
+  font-family: var(--sans); font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 800; line-height: 1.1; color: #fff; margin-bottom: 1.25rem;
+  letter-spacing: -0.03em;
+}
+h1.hero-title em { font-style: normal; color: var(--accent2); }
+.hero-desc {
+  font-size: 16px; line-height: 1.7; color: var(--muted); max-width: 560px; margin-bottom: 2rem;
+}
+.metrics-row {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 2rem;
+}
+.metric-card {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 10px; padding: 14px;
+}
+.metric-label { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+.metric-value { font-size: 18px; font-weight: 700; color: #fff; }
+.countries-block {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 12px; padding: 1.25rem; margin-bottom: 2rem;
+}
+.countries-title { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.country-row { display: flex; align-items: center; justify-content: space-between; padding: 6px 0; font-size: 14px; }
+.country-row + .country-row { border-top: 1px solid var(--border); }
+.country-badge {
+  font-family: var(--mono); font-size: 11px; font-weight: 700;
+  background: var(--accent); color: #fff; padding: 2px 8px; border-radius: 4px;
+}
+.hero-ctas { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--accent); color: #fff;
+  padding: 11px 22px; border-radius: 8px; text-decoration: none;
+  font-weight: 600; font-size: 14px; transition: all 0.2s;
+  border: 1px solid transparent;
+}
+.btn-primary:hover { background: #2563eb; transform: translateY(-1px); }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent; color: var(--text);
+  padding: 11px 18px; border-radius: 8px; text-decoration: none;
+  font-weight: 600; font-size: 14px; transition: all 0.2s;
+  border: 1px solid var(--border2);
+}
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent2); }
 
-        body.dark-mode .text-gray-800,
-        body.dark-mode .text-gray-700,
-        body.dark-mode .text-gray-600,
-        body.dark-mode .text-gray-500,
-        body.dark-mode .text-slate-900,
-        body.dark-mode .text-slate-800 {
-            color: #cbd5e1 !important;
-        }
+/* Profile card */
+.profile-card {
+  background: var(--bg3); border: 1px solid var(--border2);
+  border-radius: 16px; padding: 1.75rem; position: sticky; top: calc(var(--nav-h) + 1.5rem);
+}
+.profile-header { display: flex; align-items: center; gap: 14px; margin-bottom: 1.25rem; }
+.profile-avatar {
+  width: 64px; height: 64px; border-radius: 50%;
+  border: 2px solid var(--border2); object-fit: cover;
+}
+.profile-name { font-size: 18px; font-weight: 700; color: #fff; }
+.profile-handle { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.profile-bio { font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 1.25rem; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1.5rem; }
+.chip {
+  font-family: var(--mono); font-size: 11px; font-weight: 500;
+  padding: 4px 10px; border-radius: 4px; border: 1px solid;
+}
+.chip-blue { background: rgba(59,130,246,0.1); color: var(--accent2); border-color: rgba(59,130,246,0.25); }
+.chip-green { background: rgba(16,185,129,0.1); color: var(--green2); border-color: rgba(16,185,129,0.25); }
+.chip-purple { background: rgba(139,92,246,0.1); color: #a78bfa; border-color: rgba(139,92,246,0.25); }
+.btn-fiverr {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  background: var(--green); color: #fff; padding: 12px;
+  border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 14px;
+  transition: all 0.2s; width: 100%;
+}
+.btn-fiverr:hover { background: var(--green2); color: #065f46; }
 
-        body.dark-mode .border-gray-100,
-        body.dark-mode .border-gray-200,
-        body.dark-mode .border-slate-700 {
-            border-color: #334155 !important;
-        }
+/* ── SECTION HEADERS ── */
+.section-label {
+  font-family: var(--mono); font-size: 11px; color: var(--accent2);
+  text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;
+}
+.section-title {
+  font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700;
+  color: #fff; letter-spacing: -0.025em; margin-bottom: 3rem;
+}
+.section-title span { color: var(--accent2); }
+.divider { width: 100%; height: 1px; background: var(--border); margin: 0; }
 
-        body.dark-mode .shadow-sm,
-        body.dark-mode .shadow-lg,
-        body.dark-mode .shadow-md {
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35) !important;
-        }
+/* ── ACADEMIC ── */
+#academico .section-inner { background: var(--bg2); }
+.timeline-item {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 12px; padding: 1.5rem;
+}
+.timeline-year { font-family: var(--mono); font-size: 12px; color: var(--accent2); margin-bottom: 4px; }
+.timeline-degree { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+.timeline-school { font-size: 13px; color: var(--muted); line-height: 1.5; }
 
-        /* Dark mode background colors for different sections */
-        body.dark-mode .bg-gray-50 {
-            background-color: #1a2332 !important;
-        }
+.cert-section { margin-top: 2rem; }
+.cert-header { font-family: var(--mono); font-size: 13px; font-weight: 700; margin-bottom: 1rem; padding-left: 0.5rem; display: flex; align-items: center; gap: 8px; }
+.cert-dot { width: 8px; height: 8px; border-radius: 50%; }
+.cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; }
+.cert-card {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--bg4); border: 1px solid var(--border);
+  border-radius: 8px; padding: 12px; text-decoration: none;
+  transition: all 0.2s; color: var(--text);
+}
+.cert-card:hover { border-color: var(--border2); background: var(--bg3); transform: translateY(-1px); }
+.cert-icon { font-size: 18px; flex-shrink: 0; }
+.cert-name { font-size: 13px; font-weight: 600; }
+.cert-view { font-family: var(--mono); font-size: 11px; color: var(--muted); }
 
-        body.dark-mode .bg-gray-100 {
-            background-color: #111827 !important;
-        }
+/* ── PROJECTS ── */
+#proyectos .section-inner { }
+.projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+.project-card {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 14px; overflow: hidden; transition: all 0.3s;
+  display: flex; flex-direction: column;
+}
+.project-card:hover { border-color: var(--border2); transform: translateY(-3px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+.project-img-wrap { position: relative; height: 180px; overflow: hidden; background: var(--bg4); }
+.project-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+.project-card:hover .project-img-wrap img { transform: scale(1.05); }
+.project-img-placeholder {
+  width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+  font-size: 3rem; color: var(--muted);
+}
+.project-body { padding: 1.25rem; flex: 1; display: flex; flex-direction: column; }
+.project-title { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+.project-desc { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 12px; flex: 1; }
+.project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.tag {
+  font-family: var(--mono); font-size: 10px; font-weight: 600;
+  padding: 3px 8px; border-radius: 3px;
+}
+.project-actions { display: flex; gap: 8px; }
+.proj-btn {
+  flex: 1; text-align: center; padding: 8px;
+  border-radius: 6px; font-size: 12px; font-weight: 600;
+  text-decoration: none; transition: all 0.2s;
+}
+.proj-btn-dark { background: var(--bg); color: var(--text); border: 1px solid var(--border2); }
+.proj-btn-dark:hover { background: var(--bg4); }
+.proj-btn-blue { background: var(--accent); color: #fff; border: 1px solid transparent; }
+.proj-btn-blue:hover { background: #2563eb; }
 
-        body.dark-mode .bg-gray-600 {
-            background-color: #475569 !important;
-        }
+/* ── SERVICES / GIGS ── */
+#servicios { background: var(--bg2); }
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+.gig-card {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 14px; padding: 1.75rem;
+  transition: all 0.3s; display: flex; flex-direction: column;
+  position: relative; overflow: hidden;
+}
+.gig-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gig-color), transparent);
+  opacity: 0; transition: opacity 0.3s;
+}
+.gig-card:hover::before { opacity: 1; }
+.gig-card:hover { border-color: var(--border2); transform: translateY(-2px); }
+.gig-icon {
+  width: 48px; height: 48px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; margin-bottom: 1rem;
+}
+.gig-title { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+.gig-desc { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 1.25rem; flex: 1; }
+.gig-deliverables { list-style: none; margin-bottom: 1.5rem; }
+.gig-deliverables li {
+  font-size: 12px; color: var(--muted); padding: 4px 0;
+  display: flex; align-items: center; gap: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.gig-deliverables li:last-child { border: none; }
+.gig-deliverables li::before { content: '→'; color: var(--gig-color); font-family: var(--mono); font-size: 11px; flex-shrink: 0; }
+.gig-footer { display: flex; align-items: center; justify-content: space-between; }
+.gig-price { font-family: var(--mono); font-size: 13px; color: var(--muted); }
+.gig-price strong { font-size: 20px; color: #fff; }
+.gig-cta {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: transparent; color: var(--gig-color);
+  border: 1px solid; border-color: var(--gig-color);
+  padding: 7px 14px; border-radius: 6px; text-decoration: none;
+  font-size: 12px; font-weight: 700; transition: all 0.2s;
+  font-family: var(--mono);
+}
+.gig-cta:hover { background: var(--gig-color); color: #fff; }
 
-        body.dark-mode .text-gray-500,
-        body.dark-mode .text-gray-400,
-        body.dark-mode .text-gray-300 {
-            color: #94a3b8 !important;
-        }
+/* Gig color theming */
+.gig-blue { --gig-color: var(--accent2); }
+.gig-blue .gig-icon { background: rgba(59,130,246,0.12); color: var(--accent2); }
+.gig-green { --gig-color: var(--green2); }
+.gig-green .gig-icon { background: rgba(16,185,129,0.12); color: var(--green2); }
+.gig-purple { --gig-color: #a78bfa; }
+.gig-purple .gig-icon { background: rgba(139,92,246,0.12); color: #a78bfa; }
+.gig-amber { --gig-color: #fbbf24; }
+.gig-amber .gig-icon { background: rgba(245,158,11,0.12); color: #fbbf24; }
+.gig-cyan { --gig-color: #22d3ee; }
+.gig-cyan .gig-icon { background: rgba(34,211,238,0.12); color: #22d3ee; }
+.gig-rose { --gig-color: #fb7185; }
+.gig-rose .gig-icon { background: rgba(251,113,133,0.12); color: #fb7185; }
 
-        /* Badge/Tag colors for dark mode */
-        body.dark-mode .bg-blue-50,
-        body.dark-mode .bg-blue-100 {
-            background-color: #1e3a5f !important;
-        }
+/* ── FIVERR ── */
+#fiverr { }
+.fiverr-banner {
+  background: linear-gradient(135deg, var(--bg3) 0%, rgba(16,185,129,0.06) 100%);
+  border: 1px solid rgba(16,185,129,0.2);
+  border-radius: 16px; padding: 2.5rem; text-align: center; margin-bottom: 3rem;
+}
+.fiverr-banner h3 { font-size: 1.5rem; font-weight: 800; color: #fff; margin-bottom: 8px; }
+.fiverr-banner p { color: var(--muted); font-size: 15px; margin-bottom: 1.5rem; }
 
-        body.dark-mode .bg-blue-100,
-        body.dark-mode .text-blue-700 {
-            color: #60a5fa !important;
-        }
+/* ── ARTICLES ── */
+#articulos { background: var(--bg2); }
+.article-card {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 12px; padding: 1.75rem;
+  transition: border-color 0.2s;
+}
+.article-card:hover { border-color: var(--border2); }
+.article-conf {
+  font-family: var(--mono); font-size: 11px;
+  background: rgba(59,130,246,0.1); color: var(--accent2);
+  border: 1px solid rgba(59,130,246,0.2);
+  padding: 3px 10px; border-radius: 4px; display: inline-block; margin-bottom: 0.75rem;
+}
+.article-title { font-size: 16px; font-weight: 700; color: #fff; line-height: 1.5; margin-bottom: 8px; }
+.article-authors { font-size: 13px; color: var(--muted); margin-bottom: 4px; }
+.article-venue { font-size: 13px; color: var(--muted); margin-bottom: 1rem; }
+.article-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--mono); font-size: 12px; color: var(--accent2); text-decoration: none;
+}
+.article-link:hover { color: var(--accent); }
 
-        body.dark-mode .bg-red-50,
-        body.dark-mode .bg-red-100 {
-            background-color: #5f1e1e !important;
-        }
+/* ── CONTACT ── */
+#contacto { }
+.contact-card {
+  max-width: 600px; margin: 0 auto;
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 16px; padding: 2.5rem; text-align: center;
+}
+.contact-card p { color: var(--muted); font-size: 15px; margin-bottom: 1.5rem; }
+.contact-email {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--accent); color: #fff;
+  padding: 13px 24px; border-radius: 10px;
+  text-decoration: none; font-weight: 700; font-size: 15px;
+  transition: all 0.2s;
+}
+.contact-email:hover { background: #2563eb; transform: translateY(-1px); }
 
-        body.dark-mode .text-red-700 {
-            color: #f87171 !important;
-        }
+/* ── FOOTER ── */
+footer {
+  background: var(--bg2); border-top: 1px solid var(--border);
+  padding: 2rem 0; text-align: center;
+}
+footer p { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+footer a { color: var(--accent2); text-decoration: none; }
 
-        body.dark-mode .bg-purple-50,
-        body.dark-mode .bg-purple-100 {
-            background-color: #3e1e5f !important;
-        }
+/* ── BACK BUTTON ── */
+.back-wrap { text-align: center; margin-top: 3rem; }
+.back-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: 12px; color: var(--muted);
+  background: var(--bg3); border: 1px solid var(--border);
+  padding: 8px 16px; border-radius: 6px; cursor: pointer;
+  transition: all 0.2s; text-decoration: none;
+}
+.back-btn:hover { color: var(--text); border-color: var(--border2); }
 
-        body.dark-mode .text-purple-700 {
-            color: #d8b4fe !important;
-        }
+/* ── LIGHT MODE ── */
+body.light {
+  --bg: #f8f9fb;
+  --bg2: #f1f3f7;
+  --bg3: #ffffff;
+  --bg4: #e8eaf0;
+  --border: rgba(0,0,0,0.07);
+  --border2: rgba(0,0,0,0.14);
+  --text: #1a1d2e;
+  --muted: #6b7280;
+}
+body.light nav { background: rgba(248,249,251,0.92); }
+body.light h1.hero-title, body.light .project-title, body.light .gig-title,
+body.light .article-title, body.light .timeline-degree,
+body.light .section-title { color: #1a1d2e; }
 
-        body.dark-mode .bg-green-100,
-        body.dark-mode .bg-orange-100,
-        body.dark-mode .bg-yellow-100,
-        body.dark-mode .bg-teal-100,
-        body.dark-mode .bg-cyan-100,
-        body.dark-mode .bg-indigo-100,
-        body.dark-mode .bg-pink-100,
-        body.dark-mode .bg-amber-100,
-        body.dark-mode .bg-lime-100 {
-            background-color: #1e3a5f !important;
-        }
-
-        body.dark-mode .text-green-700,
-        body.dark-mode .text-orange-700,
-        body.dark-mode .text-yellow-700,
-        body.dark-mode .text-teal-700,
-        body.dark-mode .text-cyan-700,
-        body.dark-mode .text-indigo-700,
-        body.dark-mode .text-pink-700,
-        body.dark-mode .text-amber-700,
-        body.dark-mode .text-lime-700 {
-            color: #60a5fa !important;
-        }
-
-        /* Gradient background for Fiverr section */
-        body.dark-mode .bg-gradient-to-r {
-            background: linear-gradient(to right, #1e3a5f, #1e3a5f) !important;
-        }
-
-        /* Cards/Project containers */
-        body.dark-mode .border-gray-100 {
-            border-color: #334155 !important;
-        }
-
-        body.dark-mode .hover\:shadow-lg:hover {
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
-        }
-
-        body.dark-mode .hover\:scale-105:hover {
-            transform: scale(1.05);
-        }
-
-        /* Specific dark mode styles for Fiverr section gradient */
-        body.dark-mode .from-green-50 {
-            background: linear-gradient(to right, #0f5d3e, #0d5a3e) !important;
-        }
-
-        body.dark-mode .to-green-100 {
-            background: inherit !important;
-        }
-
-        body.dark-mode .border-green-200 {
-            border-color: #1e5a3f !important;
-        }
-
-        /* Green button in dark mode */
-        body.dark-mode .bg-green-600 {
-            background-color: #059669 !important;
-        }
-
-        body.dark-mode .hover\:bg-green-700:hover {
-            background-color: #047857 !important;
-        }
-
-        /* Text visibility in dark mode */
-        body.dark-mode .text-gray-700,
-        body.dark-mode .text-gray-600 {
-            color: #cbd5e1 !important;
-        }
-
-        body.dark-mode h1,
-        body.dark-mode h2,
-        body.dark-mode h3,
-        body.dark-mode h4,
-        body.dark-mode h5 {
-            color: #f1f5f9 !important;
-        }
-
-        /* Back button styling */
-        .back-button {
-            display: inline-block;
-            margin-top: 2rem;
-            padding: 0.75rem 1.5rem;
-            background-color: #1e40af;
-            color: white;
-            border: none;
-            border-radius: 0.5rem;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-
-        .back-button:hover {
-            background-color: #1e3a8a;
-            transform: translateX(-5px);
-        }
-
-        .missing-asset {
-            opacity: 0.65;
-            filter: grayscale(1);
-            cursor: not-allowed;
-        }
-
-        .about-hero {
-            background:
-                radial-gradient(circle at 5% 10%, rgba(59, 130, 246, 0.16), transparent 38%),
-                radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.12), transparent 40%);
-        }
-
-        .about-card {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .about-card::before {
-            content: '';
-            position: absolute;
-            top: -60px;
-            right: -60px;
-            width: 180px;
-            height: 180px;
-            border-radius: 999px;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.25) 0%, rgba(59, 130, 246, 0) 70%);
-        }
-
-        body.dark-mode .back-button {
-            background-color: #3b82f6;
-        }
-
-        body.dark-mode .back-button:hover {
-            background-color: #1e40af;
-        }
-
-        body.dark-mode .about-hero {
-            background:
-                radial-gradient(circle at 5% 10%, rgba(37, 99, 235, 0.2), transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.14), transparent 42%);
-        }
-
-        body.dark-mode .text-blue-600 {
-            color: #93c5fd !important;
-        }
-
-        body.dark-mode .bg-white\/80 {
-            background-color: rgba(15, 23, 42, 0.72) !important;
-            border-color: #334155 !important;
-        }
-
-        body.dark-mode .about-card {
-            background-color: #0f172a !important;
-            border-color: #334155 !important;
-            box-shadow: 0 16px 38px rgba(0, 0, 0, 0.45) !important;
-        }
-
-        body.dark-mode .about-card img {
-            border-color: #1e293b !important;
-        }
-
-        body.dark-mode .bg-slate-100 {
-            background-color: #0b1220 !important;
-        }
-
-        body.dark-mode .border-blue-100,
-        body.dark-mode .border-purple-100,
-        body.dark-mode .border-emerald-100 {
-            border-color: #334155 !important;
-        }
-
-        body.dark-mode .bg-emerald-50 {
-            background-color: #123528 !important;
-        }
-
-        body.dark-mode .text-emerald-700 {
-            color: #6ee7b7 !important;
-        }
-
-        body.dark-mode .about-card .bg-slate-900 {
-            background-color: #2563eb !important;
-        }
-
-        body.dark-mode .about-card .hover\:bg-slate-800:hover {
-            background-color: #1d4ed8 !important;
-        }
-
-        body.dark-mode #fiverr iframe {
-            filter: brightness(0.92) contrast(1.05);
-        }
-
-        body.dark-mode .bg-blue-50,
-        body.dark-mode .bg-purple-50,
-        body.dark-mode .bg-red-50,
-        body.dark-mode .bg-gray-50 {
-            box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.15);
-        }
-    </style>
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .projects-grid, .services-grid { grid-template-columns: 1fr 1fr; }
+  .metrics-row { grid-template-columns: 1fr 1fr; }
+  .profile-card { position: static; }
+  .nav-links { display: none; }
+}
+@media (max-width: 600px) {
+  .projects-grid, .services-grid, .cert-grid { grid-template-columns: 1fr; }
+}
+</style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans">
+<body>
 
-    <nav class="bg-slate-900 text-white p-4 sticky top-0 z-50 shadow-md">
-        <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-xl font-bold tracking-tight">Ing. Luis Eduardo Escareño Fernández</h1>
-            <div class="flex items-center gap-4">
-                <ul class="flex space-x-6">
-                    <li><a href="#sobre-mi" class="hover:text-blue-400" data-lang="nav-about">Sobre mí</a></li>
-                    <li><a href="#academico" class="hover:text-blue-400" data-lang="nav-academic">Académico</a></li>
-                    <li><a href="#proyectos" class="hover:text-blue-400" data-lang="nav-projects">Proyectos</a></li>
-                    <li><a href="#fiverr" class="hover:text-blue-400" data-lang="nav-fiverr">Fiverr</a></li>
-                    <li><a href="#articulos" class="hover:text-blue-400" data-lang="nav-articles">Artículos</a></li>
-                    <li><a href="#contacto" class="hover:text-blue-400" data-lang="nav-contact">Contacto</a></li>
-                </ul>
-                <div class="flex gap-2 border-l border-slate-600 pl-4">
-                    <button onclick="changeLanguage('es')" id="btn-es" class="px-3 py-1 rounded bg-blue-600 text-white text-sm font-semibold hover:bg-blue-500 transition">ES</button>
-                    <button onclick="changeLanguage('en')" id="btn-en" class="px-3 py-1 rounded bg-slate-700 text-white text-sm hover:bg-slate-600 transition">EN</button>
-                </div>
-                <button id="theme-toggle" onclick="toggleTheme()" class="px-3 py-1 rounded bg-slate-700 hover:bg-slate-600 transition text-sm" title="Cambiar tema">
-                    🌙 Oscuro
-                </button>
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo"><span>//</span> luis_escareno<span>.dev</span></div>
+    <div class="nav-links">
+      <a href="#sobre-mi" data-lang="nav-about">Sobre mí</a>
+      <a href="#academico" data-lang="nav-academic">Académico</a>
+      <a href="#servicios" data-lang="nav-services">Servicios</a>
+      <a href="#proyectos" data-lang="nav-projects">Proyectos</a>
+      <a href="#articulos" data-lang="nav-articles">Artículos</a>
+      <a href="#contacto" data-lang="nav-contact">Contacto</a>
+    </div>
+    <div class="nav-controls">
+      <button class="lang-btn active" id="btn-es" onclick="setLang('es')">ES</button>
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+      <button class="theme-btn" id="theme-btn" onclick="toggleTheme()">☀︎</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="sobre-mi">
+  <div class="container">
+    <div class="section-inner">
+      <div class="hero-grid">
+        <div>
+          <div class="hero-tag" data-lang="hero-available">Disponible para proyectos</div>
+          <h1 class="hero-title"><em data-lang="hero-title1">Ingeniero</em><br><span data-lang="hero-title2">en Mecatrónica</span></h1>
+          <p class="hero-desc" data-lang="hero-desc">Ingeniero en Mecatrónica con experiencia en más de 20 proyectos internacionales de hardware y diseño de PCBs. Especializado en sistemas embebidos, robótica y manufactura.</p>
+          <div class="metrics-row">
+            <div class="metric-card">
+              <div class="metric-label" data-lang="m1-label">Proyectos</div>
+              <div class="metric-value">20+</div>
             </div>
+            <div class="metric-card">
+              <div class="metric-label" data-lang="m2-label">Países</div>
+              <div class="metric-value">11</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label" data-lang="m3-label">Clientes</div>
+              <div class="metric-value">29</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label" data-lang="m4-label">Modalidad</div>
+              <div class="metric-value" style="font-size:13px;padding-top:2px" data-lang="m4-val">Freelance</div>
+            </div>
+          </div>
+          <div class="countries-block">
+            <div class="countries-title" data-lang="countries-title">Top clientes por país</div>
+            <div class="country-row"><span>🇺🇸 <span data-lang="c-usa">Estados Unidos</span></span><span class="country-badge">7</span></div>
+            <div class="country-row"><span>🇲🇽 <span data-lang="c-mx">México</span></span><span class="country-badge">6</span></div>
+            <div class="country-row"><span>🇩🇪 <span data-lang="c-de">Alemania</span></span><span class="country-badge">3</span></div>
+            <div class="country-row"><span>🇫🇷 <span data-lang="c-fr">Francia</span></span><span class="country-badge">3</span></div>
+            <div class="country-row"><span>🌍 <span data-lang="c-other">Otros (7)</span></span><span class="country-badge">10</span></div>
+          </div>
+          <div class="hero-ctas">
+            <a href="CV.pdf" download class="btn-primary" data-lang="btn-cv"><i class="fas fa-download"></i> Descargar CV</a>
+            <a href="https://github.com/luisescareno18" class="btn-ghost" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+          </div>
         </div>
-    </nav>
-
-    <header id="sobre-mi" class="py-20 bg-white about-hero">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-                <div class="lg:col-span-7">
-                    <p class="uppercase tracking-[0.22em] text-sm text-blue-600 font-semibold mb-3" data-lang="about-kicker">Perfil profesional</p>
-                    <h2 class="text-4xl lg:text-5xl font-extrabold text-slate-900 mb-4" data-lang="header-title">Ingeniero en Mecatrónica</h2>
-                    <p class="text-lg leading-relaxed mb-6 text-gray-600" data-lang="header-desc">
-                        Ingeniero en Mecatrónica, con experiencia en más de 20 proyectos internacionales de hardware y diseño de PCBs. Apasionado por la innovación tecnológica y la creación de soluciones eficientes 
-                        en el ámbito de los sistemas embebidos y robótica. Mi objetivo es seguir creciendo profesionalmente y contribuir al desarrollo de tecnologías que mejoren la calidad de vida.
-                    </p>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-7">
-                        <div class="bg-white/80 rounded-xl border border-blue-100 p-3 shadow-sm">
-                            <p class="text-xs text-gray-500" data-lang="metric1-label">Experiencia</p>
-                            <p class="text-xl font-bold text-slate-900" data-lang="metric1-value">20+ proyectos</p>
-                        </div>
-                        <div class="bg-white/80 rounded-xl border border-blue-100 p-3 shadow-sm">
-                            <p class="text-xs text-gray-500" data-lang="metric2-label">Especialidad</p>
-                            <p class="text-xl font-bold text-slate-900">PCB Design</p>
-                        </div>
-                        <div class="bg-white/80 rounded-xl border border-blue-100 p-3 shadow-sm">
-                            <p class="text-xs text-gray-500" data-lang="metric3-label">Clientes en</p>
-                            <p class="text-xl font-bold text-slate-900" data-lang="metric3-value">11 países</p>
-                        </div>
-                        <div class="bg-white/80 rounded-xl border border-blue-100 p-3 shadow-sm">
-                            <p class="text-xs text-gray-500" data-lang="metric4-label">Modalidad</p>
-                            <p class="text-xl font-bold text-slate-900" data-lang="metric4-value">Freelance</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Countries section -->
-                    <div class="bg-gradient-to-r from-blue-50 to-slate-50 rounded-xl border border-blue-100 p-5 mb-7">
-                        <p class="text-sm font-semibold text-slate-700 mb-3" data-lang="countries-title">Clientes principales por país:</p>
-                        <div class="space-y-2">
-                            <div class="flex items-center justify-between text-sm">
-                                <span class="text-gray-700"><span class="text-lg mr-2">🇺🇸</span><span data-lang="country-usa">Estados Unidos</span></span>
-                                <span class="bg-blue-600 text-white px-2 py-1 rounded font-bold">7</span>
-                            </div>
-                            <div class="flex items-center justify-between text-sm">
-                                <span class="text-gray-700"><span class="text-lg mr-2">🇲🇽</span><span data-lang="country-mexico">México</span></span>
-                                <span class="bg-blue-600 text-white px-2 py-1 rounded font-bold">6</span>
-                            </div>
-                            <div class="flex items-center justify-between text-sm">
-                                <span class="text-gray-700"><span class="text-lg mr-2">🇩🇪</span><span data-lang="country-germany">Alemania</span></span>
-                                <span class="bg-blue-600 text-white px-2 py-1 rounded font-bold">3</span>
-                            </div>
-                            <div class="flex items-center justify-between text-sm">
-                                <span class="text-gray-700"><span class="text-lg mr-2">🇫🇷</span><span data-lang="country-france">Francia</span></span>
-                                <span class="bg-blue-600 text-white px-2 py-1 rounded font-bold">3</span>
-                            </div>
-                            <div class="flex items-center justify-between text-sm">
-                                <span class="text-gray-700"><span class="text-lg mr-2">🌍</span><span data-lang="country-others">Otros (7)</span></span>
-                                <span class="bg-blue-600 text-white px-2 py-1 rounded font-bold">10</span>
-                            </div>
-                        </div>
-                        <p class="text-xs text-gray-500 mt-3" data-lang="countries-total">Total: 29 clientes internacionales</p>
-                    </div>
-                    <div class="flex flex-wrap items-center gap-4">
-                        <a id="cv-download-button" href="CV.pdf" download="CV.pdf" data-cv-es="CV.pdf" data-cv-en="CV_EN.pdf" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition" data-lang="btn-cv">Descargar mi CV (PDF)</a>
-                        <a href="https://github.com/luisescareno18" class="text-slate-800 hover:text-blue-600 font-semibold inline-flex items-center gap-2">
-                            <i class="fab fa-github text-2xl"></i>
-                            <span data-lang="about-github">Ver GitHub</span>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="lg:col-span-5">
-                    <aside class="about-card bg-white rounded-2xl border border-gray-200 shadow-xl p-6 md:p-7">
-                        <div class="flex items-center gap-4 mb-5">
-                            <img src="https://github.com/luisescareno18.png" alt="Foto de perfil de Luis Escareno" class="w-20 h-20 rounded-full object-cover border-4 border-white shadow-md">
-                            <div>
-                                <h3 class="text-2xl font-bold text-slate-900">Luis E</h3>
-                                <p class="text-gray-500">@luis_escareno</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-700 leading-relaxed mb-5" data-lang="about-card-bio">Diseño e innovación en electrónica y mecánica para convertir ideas en productos funcionales y listos para fabricar.</p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="px-3 py-1 text-sm rounded-full bg-blue-50 text-blue-700 border border-blue-100" data-lang="about-chip-1">Experto en EasyEDA</span>
-                            <span class="px-3 py-1 text-sm rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100" data-lang="about-chip-2">Desarrollador Python</span>
-                            <span class="px-3 py-1 text-sm rounded-full bg-purple-50 text-purple-700 border border-purple-100" data-lang="about-chip-3">Experto en SolidWorks</span>
-                        </div>
-                        <a href="https://es.fiverr.com/users/luis_escareno" target="_blank" class="inline-flex items-center justify-center w-full bg-slate-900 text-white px-4 py-3 rounded-lg hover:bg-slate-800 transition font-semibold">
-                            <i class="fas fa-briefcase mr-2"></i><span data-lang="about-cta">Ver servicios en Fiverr</span>
-                        </a>
-                    </aside>
-                </div>
+        <div>
+          <div class="profile-card">
+            <div class="profile-header">
+              <img src="https://github.com/luisescareno18.png" alt="Luis Escareno" class="profile-avatar">
+              <div>
+                <div class="profile-name">Luis Eduardo</div>
+                <div class="profile-handle">@luis_escareno</div>
+              </div>
             </div>
+            <p class="profile-bio" data-lang="profile-bio">Diseño e innovación en electrónica y mecánica para convertir ideas en productos funcionales y listos para fabricar.</p>
+            <div class="chips">
+              <span class="chip chip-blue" data-lang="chip1">EasyEDA Expert</span>
+              <span class="chip chip-green" data-lang="chip2">Python Dev</span>
+              <span class="chip chip-purple" data-lang="chip3">SolidWorks Expert</span>
+            </div>
+            <a href="https://es.fiverr.com/users/luis_escareno" target="_blank" class="btn-fiverr"><i class="fab fa-fiverr"></i> <span data-lang="profile-cta">Ver servicios en Fiverr</span></a>
+          </div>
         </div>
-    </header>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
 
-    <section id="academico" class="py-16 bg-gray-100">
-        <div class="container mx-auto px-6">
-            <h3 class="text-3xl font-bold mb-8 border-b-2 border-blue-500 inline-block" data-lang="section-academic">Formación Académica</h3>
-            <div class="space-y-6">
-                <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-blue-500">
-                    <span class="text-blue-600 font-bold">2020 - 2025</span>
-                    <h4 class="text-xl font-bold" data-lang="degree-title">Ingeniería en Mecatrónica</h4>
-                    <p class="text-gray-500" data-lang="degree-school">Unidad Profesional Interdisciplinaria de Ingeniería campus Zacatecas - Instituto Politécnico Nacional - Zacatecas, México</p>
-                </div>
-
-                <!-- Certificados SOLIDWORKS -->
-                <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-red-500">
-                    <h4 class="text-xl font-bold mb-6" data-lang="cert-solidworks">Certificados SOLIDWORKS</h4>
-                    
-                    <!-- Certificados Asociado -->
-                    <div class="mb-6">
-                        <h5 class="font-semibold text-lg text-gray-700 mb-3 flex items-center gap-2">
-                            <span class="w-3 h-3 bg-blue-500 rounded-full"></span> <span data-lang="cert-associate">Asociado</span>
-                        </h5>
-                        <div class="space-y-2 pl-5">
-                            <a href="Certificado CSWA.pdf" target="_blank" class="flex items-center gap-3 p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition cursor-pointer border border-blue-200">
-                                <i class="fas fa-certificate text-blue-600"></i>
-                                <div>
-                                    <p class="font-semibold text-gray-800">Mechanical Design</p>
-                                    <p class="text-sm text-gray-500">Ver PDF</p>
-                                </div>
-                            </a>
-                            <a href="Certificado CSWA-AM.pdf" target="_blank" class="flex items-center gap-3 p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition cursor-pointer border border-blue-200">
-                                <i class="fas fa-certificate text-blue-600"></i>
-                                <div>
-                                    <p class="font-semibold text-gray-800">Additive Manufacturing</p>
-                                    <p class="text-sm text-gray-500">Ver PDF</p>
-                                </div>
-                            </a>
-                            <a href="Certificado CSWA-ED.pdf" target="_blank" class="flex items-center gap-3 p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition cursor-pointer border border-blue-200">
-                                <i class="fas fa-certificate text-blue-600"></i>
-                                <div>
-                                    <p class="font-semibold text-gray-800">Electrical Design</p>
-                                    <p class="text-sm text-gray-500">Ver PDF</p>
-                                </div>
-                            </a>
-                            <a href="Certificado CSWA-S.pdf" target="_blank" class="flex items-center gap-3 p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition cursor-pointer border border-blue-200">
-                                <i class="fas fa-certificate text-blue-600"></i>
-                                <div>
-                                    <p class="font-semibold text-gray-800">Simulation</p>
-                                    <p class="text-sm text-gray-500">Ver PDF</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Certificados Profesional -->
-                    <div>
-                        <h5 class="font-semibold text-lg text-gray-700 mb-3 flex items-center gap-2">
-                            <span class="w-3 h-3 bg-purple-500 rounded-full"></span> <span data-lang="cert-professional">Profesional</span>
-                        </h5>
-                        <div class="space-y-2 pl-5">
-                            <a href="Certificado CSWP.pdf" target="_blank" class="flex items-center gap-3 p-3 bg-purple-50 rounded-lg hover:bg-purple-100 transition cursor-pointer border border-purple-200">
-                                <i class="fas fa-certificate text-purple-600"></i>
-                                <div>
-                                    <p class="font-semibold text-gray-800">Mechanical Design</p>
-                                    <p class="text-sm text-gray-500">Ver PDF</p>
-                                </div>
-                            </a>
-                            <a href="Certificado CSWP-SM.pdf" target="_blank" class="flex items-center gap-3 p-3 bg-purple-50 rounded-lg hover:bg-purple-100 transition cursor-pointer border border-purple-200">
-                                <i class="fas fa-certificate text-purple-600"></i>
-                                <div>
-                                    <p class="font-semibold text-gray-800">Sheet Metal</p>
-                                    <p class="text-sm text-gray-500">Ver PDF</p>
-                                </div>
-                            </a>
-                            <a href="Certificado CSWPA-DT.pdf" target="_blank" class="flex items-center gap-3 p-3 bg-purple-50 rounded-lg hover:bg-purple-100 transition cursor-pointer border border-purple-200">
-                                <i class="fas fa-certificate text-purple-600"></i>
-                                <div>
-                                    <p class="font-semibold text-gray-800">Drawing Tools</p>
-                                    <p class="text-sm text-gray-500">Ver PDF</p>
-                                </div>
-                            </a>
-                            <a href="Certificado CSWPA-SU.pdf" target="_blank" class="flex items-center gap-3 p-3 bg-purple-50 rounded-lg hover:bg-purple-100 transition cursor-pointer border border-purple-200">
-                                <i class="fas fa-certificate text-purple-600"></i>
-                                <div>
-                                    <p class="font-semibold text-gray-800">Surfaces</p>
-                                    <p class="text-sm text-gray-500">Ver PDF</p>
-                                </div>
-                            </a>
-                            <a href="Certificado CSWPA-WD.pdf" target="_blank" class="flex items-center gap-3 p-3 bg-purple-50 rounded-lg hover:bg-purple-100 transition cursor-pointer border border-purple-200">
-                                <i class="fas fa-certificate text-purple-600"></i>
-                                <div>
-                                    <p class="font-semibold text-gray-800">Weldments</p>
-                                    <p class="text-sm text-gray-500">Ver PDF</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center border-t border-gray-200 pt-8 mt-8">
-                <button class="back-button" onclick="scrollToSection('sobre-mi')"><i class="fas fa-arrow-up mr-2"></i><span data-lang="btn-menu">Menú Principal</span></button>
-            </div>
+<!-- ACADEMIC -->
+<section id="academico">
+  <div class="section-inner">
+    <div class="container">
+      <div class="section-label" data-lang="label-academic">// formación</div>
+      <div class="section-title" data-lang="title-academic">Formación <span>Académica</span></div>
+      <div class="timeline-item" style="margin-bottom:2rem">
+        <div class="timeline-year">2020 – 2025</div>
+        <div class="timeline-degree" data-lang="degree">Ingeniería en Mecatrónica</div>
+        <div class="timeline-school" data-lang="school">Unidad Profesional Interdisciplinaria de Ingeniería campus Zacatecas · Instituto Politécnico Nacional · Zacatecas, México</div>
+      </div>
+      <div style="background:var(--bg3);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:12px;padding:1.5rem;">
+        <div style="font-size:17px;font-weight:700;color:#fff;margin-bottom:1.5rem;" data-lang="cert-title">Certificados SOLIDWORKS</div>
+        <div class="cert-section">
+          <div class="cert-header" style="color:var(--accent2)"><span class="cert-dot" style="background:var(--accent)"></span><span data-lang="cert-assoc">Asociado (CSWA)</span></div>
+          <div class="cert-grid">
+            <a href="Certificado CSWA.pdf" target="_blank" class="cert-card">
+              <span class="cert-icon" style="color:var(--accent2)"><i class="fas fa-certificate"></i></span>
+              <div><div class="cert-name">Mechanical Design</div><div class="cert-view">Ver PDF →</div></div>
+            </a>
+            <a href="Certificado CSWA-AM.pdf" target="_blank" class="cert-card">
+              <span class="cert-icon" style="color:var(--accent2)"><i class="fas fa-certificate"></i></span>
+              <div><div class="cert-name">Additive Manufacturing</div><div class="cert-view">Ver PDF →</div></div>
+            </a>
+            <a href="Certificado CSWA-ED.pdf" target="_blank" class="cert-card">
+              <span class="cert-icon" style="color:var(--accent2)"><i class="fas fa-certificate"></i></span>
+              <div><div class="cert-name">Electrical Design</div><div class="cert-view">Ver PDF →</div></div>
+            </a>
+            <a href="Certificado CSWA-S.pdf" target="_blank" class="cert-card">
+              <span class="cert-icon" style="color:var(--accent2)"><i class="fas fa-certificate"></i></span>
+              <div><div class="cert-name">Simulation</div><div class="cert-view">Ver PDF →</div></div>
+            </a>
+          </div>
         </div>
-    </section>
-
-    <section id="proyectos" class="py-16 bg-white">
-        <div class="container mx-auto px-6">
-            <h3 class="text-3xl font-bold mb-12 text-center" data-lang="section-projects">Proyectos Destacados</h3>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:scale-105 transition-transform">
-                    <!-- Imagen del proyecto -->
-                    <img src="Vending_machine.png" alt="Smart Vending Machine PCB" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h4 class="font-bold text-xl mb-2">Máquina expendedora PCB</h4>
-                        <p class="text-gray-600 text-sm mb-4">Diseño de placa multicapa con integración de ESP32 y sensores industriales.</p>
-                        <div class="mb-4">
-                            <span class="bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded">Easyeda</span>
-                            <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded">Freelance</span>
-                        </div>
-                        <!-- Botones para ver esquemático -->
-                        <div class="flex gap-2">
-                            <a href="Schematic_Vending-machine.pdf" target="_blank" class="flex-1 text-center bg-slate-800 text-white px-3 py-2 rounded text-sm hover:bg-slate-700 transition">
-                                <i class="fas fa-file-pdf mr-1"></i> Esquemático
-                            </a>
-                            <a href="proyecto1-detalles.jpg" target="_blank" class="flex-1 text-center bg-blue-600 text-white px-3 py-2 rounded text-sm hover:bg-blue-700 transition">
-                                <i class="fas fa-image mr-1"></i> Ver más
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:scale-105 transition-transform">
-                    <img src="Battery_Circuit.png" alt="Circuito con Bateria" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h4 class="font-bold text-xl mb-2">Circuito con Bateria PCB</h4>
-                        <p class="text-gray-600 text-sm mb-4">Diseño de circuito con batería integrada para aplicaciones portátiles.</p>
-                        <div class="mb-4">
-                            <span class="bg-purple-100 text-purple-700 text-xs px-2 py-1 rounded">18650 Battery</span>
-                            <span class="bg-orange-100 text-orange-700 text-xs px-2 py-1 rounded">IoT</span>
-                        </div>
-                        <div class="flex gap-2">
-                            <a href="esquematico2.pdf" target="_blank" class="flex-1 text-center bg-slate-800 text-white px-3 py-2 rounded text-sm hover:bg-slate-700 transition">
-                                <i class="fas fa-file-pdf mr-1"></i> Esquemático
-                            </a>
-                            <a href="proyecto2-detalles.jpg" target="_blank" class="flex-1 text-center bg-blue-600 text-white px-3 py-2 rounded text-sm hover:bg-blue-700 transition">
-                                <i class="fas fa-image mr-1"></i> Ver más
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:scale-105 transition-transform">
-                    <img src="proyecto3.jpg" alt="Robot Móvil Autónomo" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h4 class="font-bold text-xl mb-2">Robot Móvil Autónomo</h4>
-                        <p class="text-gray-600 text-sm mb-4">Plataforma robótica con navegación por sensores ultrasonido y encoders.</p>
-                        <div class="mb-4">
-                            <span class="bg-red-100 text-red-700 text-xs px-2 py-1 rounded">Arduino</span>
-                            <span class="bg-yellow-100 text-yellow-700 text-xs px-2 py-1 rounded">Robótica</span>
-                        </div>
-                        <div class="flex gap-2">
-                            <a href="esquematico3.pdf" target="_blank" class="flex-1 text-center bg-slate-800 text-white px-3 py-2 rounded text-sm hover:bg-slate-700 transition">
-                                <i class="fas fa-file-pdf mr-1"></i> Esquemático
-                            </a>
-                            <a href="proyecto3-detalles.jpg" target="_blank" class="flex-1 text-center bg-blue-600 text-white px-3 py-2 rounded text-sm hover:bg-blue-700 transition">
-                                <i class="fas fa-image mr-1"></i> Ver más
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:scale-105 transition-transform">
-                    <img src="proyecto4.jpg" alt="Estación Meteorológica" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h4 class="font-bold text-xl mb-2">Estación Meteorológica</h4>
-                        <p class="text-gray-600 text-sm mb-4">Sistema de monitoreo ambiental con transmisión de datos en tiempo real.</p>
-                        <div class="mb-4">
-                            <span class="bg-teal-100 text-teal-700 text-xs px-2 py-1 rounded">STM32</span>
-                            <span class="bg-cyan-100 text-cyan-700 text-xs px-2 py-1 rounded">Sensores</span>
-                        </div>
-                        <div class="flex gap-2">
-                            <a href="esquematico4.pdf" target="_blank" class="flex-1 text-center bg-slate-800 text-white px-3 py-2 rounded text-sm hover:bg-slate-700 transition">
-                                <i class="fas fa-file-pdf mr-1"></i> Esquemático
-                            </a>
-                            <a href="proyecto4-detalles.jpg" target="_blank" class="flex-1 text-center bg-blue-600 text-white px-3 py-2 rounded text-sm hover:bg-blue-700 transition">
-                                <i class="fas fa-image mr-1"></i> Ver más
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:scale-105 transition-transform">
-                    <img src="proyecto5.jpg" alt="Sistema de Control de Acceso" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h4 class="font-bold text-xl mb-2">Control de Acceso RFID</h4>
-                        <p class="text-gray-600 text-sm mb-4">Sistema de seguridad con autenticación por tarjeta y registro en base de datos.</p>
-                        <div class="mb-4">
-                            <span class="bg-indigo-100 text-indigo-700 text-xs px-2 py-1 rounded">Raspberry Pi</span>
-                            <span class="bg-pink-100 text-pink-700 text-xs px-2 py-1 rounded">Seguridad</span>
-                        </div>
-                        <div class="flex gap-2">
-                            <a href="esquematico5.pdf" target="_blank" class="flex-1 text-center bg-slate-800 text-white px-3 py-2 rounded text-sm hover:bg-slate-700 transition">
-                                <i class="fas fa-file-pdf mr-1"></i> Esquemático
-                            </a>
-                            <a href="proyecto5-detalles.jpg" target="_blank" class="flex-1 text-center bg-blue-600 text-white px-3 py-2 rounded text-sm hover:bg-blue-700 transition">
-                                <i class="fas fa-image mr-1"></i> Ver más
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:scale-105 transition-transform">
-                    <img src="proyecto6.jpg" alt="Brazo Robótico Pick and Place" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h4 class="font-bold text-xl mb-2">Brazo Robótico Pick & Place</h4>
-                        <p class="text-gray-600 text-sm mb-4">Brazo de 4 DOF con control por cinemática inversa para automatización industrial.</p>
-                        <div class="mb-4">
-                            <span class="bg-amber-100 text-amber-700 text-xs px-2 py-1 rounded">Servos</span>
-                            <span class="bg-lime-100 text-lime-700 text-xs px-2 py-1 rounded">Automatización</span>
-                        </div>
-                        <div class="flex gap-2">
-                            <a href="esquematico6.pdf" target="_blank" class="flex-1 text-center bg-slate-800 text-white px-3 py-2 rounded text-sm hover:bg-slate-700 transition">
-                                <i class="fas fa-file-pdf mr-1"></i> Esquemático
-                            </a>
-                            <a href="proyecto6-detalles.jpg" target="_blank" class="flex-1 text-center bg-blue-600 text-white px-3 py-2 rounded text-sm hover:bg-blue-700 transition">
-                                <i class="fas fa-image mr-1"></i> Ver más
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center border-t border-gray-200 pt-8 mt-8">
-                <button class="back-button" onclick="scrollToSection('sobre-mi')"><i class="fas fa-arrow-up mr-2"></i><span data-lang="btn-menu">Menú Principal</span></button>
-            </div>
+        <div class="cert-section" style="margin-top:1.5rem">
+          <div class="cert-header" style="color:#a78bfa"><span class="cert-dot" style="background:var(--purple)"></span><span data-lang="cert-pro">Profesional (CSWP)</span></div>
+          <div class="cert-grid">
+            <a href="Certificado CSWP.pdf" target="_blank" class="cert-card">
+              <span class="cert-icon" style="color:#a78bfa"><i class="fas fa-certificate"></i></span>
+              <div><div class="cert-name">Mechanical Design</div><div class="cert-view">Ver PDF →</div></div>
+            </a>
+            <a href="Certificado CSWP-SM.pdf" target="_blank" class="cert-card">
+              <span class="cert-icon" style="color:#a78bfa"><i class="fas fa-certificate"></i></span>
+              <div><div class="cert-name">Sheet Metal</div><div class="cert-view">Ver PDF →</div></div>
+            </a>
+            <a href="Certificado CSWPA-DT.pdf" target="_blank" class="cert-card">
+              <span class="cert-icon" style="color:#a78bfa"><i class="fas fa-certificate"></i></span>
+              <div><div class="cert-name">Drawing Tools</div><div class="cert-view">Ver PDF →</div></div>
+            </a>
+            <a href="Certificado CSWPA-SU.pdf" target="_blank" class="cert-card">
+              <span class="cert-icon" style="color:#a78bfa"><i class="fas fa-certificate"></i></span>
+              <div><div class="cert-name">Surfaces</div><div class="cert-view">Ver PDF →</div></div>
+            </a>
+            <a href="Certificado CSWPA-WD.pdf" target="_blank" class="cert-card">
+              <span class="cert-icon" style="color:#a78bfa"><i class="fas fa-certificate"></i></span>
+              <div><div class="cert-name">Weldments</div><div class="cert-view">Ver PDF →</div></div>
+            </a>
+          </div>
         </div>
-    </section>
+      </div>
+      <div class="back-wrap"><a href="#sobre-mi" class="back-btn"><i class="fas fa-arrow-up"></i> <span data-lang="btn-back">Inicio</span></a></div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
 
-    <section id="articulos" class="py-16 bg-slate-900 text-white">
-        <div class="container mx-auto px-6">
-            <h3 class="text-3xl font-bold mb-8" data-lang="section-articles">Artículos y Divulgación</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                <article class="border-b border-slate-700 pb-6">
-                    <h4 class="text-xl font-semibold hover:text-blue-400 cursor-pointer transition">"Deployment of an Agricultural Mobile Robot for the Detection of Damaged Areas in Bean Crops Using Artificial Intelligence"</h4>
-                    <p class="text-slate-300 mt-2 text-sm"><strong>Autores:</strong> Rafael Reveles-Martínez, Edgar R. Ruvalcaba Castro, Israel Herrera-Álvarez</p>
-                    <p class="text-slate-400 mt-2">Presentado en la 5ta Conferencia Internacional de Tecnologías Electrica, de Computación y Energía en París, Francia 2025</p>
-                    <a href="https://doi.org/10.1109/ICECET63943.2025.11471958" target="_blank" class="text-blue-400 text-sm mt-4 block italic hover:text-blue-300 transition" data-lang="read-more">Leer más → <i class="fas fa-external-link-alt ml-1"></i></a>
-                </article>
-            </div>
-            <div class="text-center border-t border-slate-700 pt-8 mt-8">
-                <button class="back-button" onclick="scrollToSection('sobre-mi')"><i class="fas fa-arrow-up mr-2"></i><span data-lang="btn-menu">Menú Principal</span></button>
-            </div>
+<!-- SERVICES -->
+<section id="servicios">
+  <div class="section-inner">
+    <div class="container">
+      <div class="section-label" data-lang="label-services">// servicios</div>
+      <div class="section-title" data-lang="title-services">Mis <span>Servicios</span></div>
+      <div class="services-grid">
+
+        <div class="gig-card gig-blue">
+          <div class="gig-icon"><i class="fas fa-microchip"></i></div>
+          <div class="gig-title" data-lang="gig1-title">Diseño de PCB Profesional</div>
+          <div class="gig-desc" data-lang="gig1-desc">Diseño de placas de circuito impreso con EasyEDA, Altium o KiCAD. Desde prototipos hasta diseños multicapa listos para fabricación.</div>
+          <ul class="gig-deliverables">
+            <li data-lang="gig1-d1">Diseño esquemático completo</li>
+            <li data-lang="gig1-d2">Layout PCB con DRC aprobado</li>
+            <li data-lang="gig1-d3">Archivos Gerber para producción</li>
+            <li data-lang="gig1-d4">BOM (lista de materiales)</li>
+          </ul>
+          <div class="gig-footer">
+            <div class="gig-price"><span data-lang="gig-from">Desde</span> <strong>$30</strong> USD</div>
+            <a href="https://es.fiverr.com/users/luis_escareno" target="_blank" class="gig-cta" data-lang="gig-order">Contratar →</a>
+          </div>
         </div>
-    </section>
 
-    <section id="fiverr" class="py-16 bg-white">
-        <div class="container mx-auto px-6">
-            <h3 class="text-3xl font-bold mb-12 text-center" data-lang="section-fiverr">Servicios en Fiverr</h3>
-            
-            <!-- Descripción y enlace principal -->
-            <div class="bg-gradient-to-r from-green-50 to-green-100 border border-green-200 rounded-xl p-8 mb-12 text-center">
-                <p class="text-lg text-gray-700 mb-6" data-lang="fiverr-desc">Diseño de PCBs profesional con experiencia en proyectos internacionales</p>
-                <a href="https://es.fiverr.com/users/luis_escareno" target="_blank" class="inline-block bg-green-600 text-white px-8 py-3 rounded-lg hover:bg-green-700 transition font-semibold text-lg">
-                    <i class="fas fa-arrow-right mr-2"></i><span data-lang="fiverr-link">Ir a mi perfil en Fiverr</span>
-                </a>
-            </div>
-
-            <!-- Servicios destacados -->
-            <h4 class="text-2xl font-bold mb-8 text-gray-800">Servicios Principales</h4>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200 hover:shadow-lg transition">
-                    <div class="text-4xl mb-4">📋</div>
-                    <h5 class="font-bold text-lg mb-3 text-gray-800">Diseño de Esquemáticos</h5>
-                    <p class="text-gray-600 text-sm">Esquemáticos profesionales en EasyEDA, Altium o KiCAD con componentes optimizados para tus proyectos.</p>
-                </div>
-                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200 hover:shadow-lg transition">
-                    <div class="text-4xl mb-4">🔌</div>
-                    <h5 class="font-bold text-lg mb-3 text-gray-800">Diseño de PCBs</h5>
-                    <p class="text-gray-600 text-sm">Placas multicapa optimizadas con enrutamiento profesional, design rules y simulación eléctrica.</p>
-                </div>
-                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200 hover:shadow-lg transition">
-                    <div class="text-4xl mb-4">🎯</div>
-                    <h5 class="font-bold text-lg mb-3 text-gray-800">Soporte Técnico</h5>
-                    <p class="text-gray-600 text-sm">Asesoría en selección de componentes, cálculos de potencia y optimización de circuitos.</p>
-                </div>
-            </div>
-
-            <!-- Vista previa del perfil -->
-            <h4 class="text-2xl font-bold mb-8 text-gray-800" data-lang="fiverr-preview-title">Vista previa del perfil y reseñas</h4>
-            <div class="bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden">
-                <div class="p-5 border-b border-gray-200 flex flex-col md:flex-row md:items-center md:justify-between gap-4 bg-gray-50">
-                    <div>
-                        <p class="text-sm uppercase tracking-widest text-gray-500 mb-1" data-lang="fiverr-preview-label">Perfil público de Fiverr</p>
-                        <p class="text-gray-700" data-lang="fiverr-preview-note">Las reseñas aparecen en tu perfil público y aquí se muestran mediante una vista previa directa.</p>
-                    </div>
-                    <a href="https://es.fiverr.com/luis_escareno?public_mode=true" target="_blank" class="inline-flex items-center justify-center bg-green-600 text-white px-5 py-3 rounded-lg hover:bg-green-700 transition font-semibold">
-                        <i class="fas fa-external-link-alt mr-2"></i><span data-lang="fiverr-open-profile">Abrir perfil de Fiverr</span>
-                    </a>
-                </div>
-                <div class="grid grid-cols-1 lg:grid-cols-[1.45fr_0.85fr] gap-0">
-                    <div class="bg-slate-100">
-                        <iframe
-                            src="https://es.fiverr.com/luis_escareno?public_mode=true"
-                            title="Perfil de Fiverr de Luis Escareño"
-                            class="w-full h-[780px] border-0"
-                            loading="lazy">
-                        </iframe>
-                    </div>
-                    <div class="p-6 bg-white border-t lg:border-t-0 lg:border-l border-gray-200">
-                        <h5 class="text-xl font-bold text-gray-800 mb-4" data-lang="fiverr-highlights">Lo que verán en mi perfil</h5>
-                        <ul class="space-y-4 text-gray-600">
-                            <li class="flex items-start gap-3">
-                                <span class="text-green-600 mt-1"><i class="fas fa-check-circle"></i></span>
-                                <span data-lang="fiverr-highlight-1">Servicios de diseño de PCB y esquemáticos para proyectos electrónicos.</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <span class="text-green-600 mt-1"><i class="fas fa-check-circle"></i></span>
-                                <span data-lang="fiverr-highlight-2">Reseñas reales de clientes y calificaciones visibles en tu perfil público.</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <span class="text-green-600 mt-1"><i class="fas fa-check-circle"></i></span>
-                                <span data-lang="fiverr-highlight-3">Acceso rápido para contratarte o revisar tu oferta completa.</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="text-center border-t border-gray-200 pt-8 mt-8">
-                <button class="back-button" onclick="scrollToSection('sobre-mi')"><i class="fas fa-arrow-up mr-2"></i><span data-lang="btn-menu">Menú Principal</span></button>
-            </div>
+        <div class="gig-card gig-green">
+          <div class="gig-icon"><i class="fas fa-drafting-compass"></i></div>
+          <div class="gig-title" data-lang="gig2-title">Diseño 3D en SolidWorks</div>
+          <div class="gig-desc" data-lang="gig2-desc">Modelado 3D, ensambles y planos de fabricación con SolidWorks. Certificado CSWP con especialidades en Sheet Metal y Weldments.</div>
+          <ul class="gig-deliverables">
+            <li data-lang="gig2-d1">Modelos 3D paramétricos</li>
+            <li data-lang="gig2-d2">Ensambles completos</li>
+            <li data-lang="gig2-d3">Planos de fabricación (GD&T)</li>
+            <li data-lang="gig2-d4">Archivos STEP/IGES/STL</li>
+          </ul>
+          <div class="gig-footer">
+            <div class="gig-price"><span data-lang="gig-from">Desde</span> <strong>$25</strong> USD</div>
+            <a href="https://es.fiverr.com/users/luis_escareno" target="_blank" class="gig-cta" data-lang="gig-order">Contratar →</a>
+          </div>
         </div>
-    </section>
 
-    <section id="contacto" class="py-16 bg-gray-100">
-        <div class="container mx-auto px-6">
-            <h3 class="text-3xl font-bold mb-8 text-center" data-lang="section-contact">Contacto</h3>
-            <div class="max-w-3xl mx-auto bg-white rounded-2xl shadow-lg border border-gray-200 p-8 text-center">
-                <p class="text-lg text-gray-700 mb-6" data-lang="contact-desc">Estoy disponible para cotizaciones, trabajo y nuevos proyectos.</p>
-                <a href="mailto:luisescarenofernandez@gmail.com" class="inline-flex items-center gap-3 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition font-semibold">
-                    <i class="fas fa-envelope"></i>
-                    <span data-lang="contact-email-label">luisescarenofernandez@gmail.com</span>
-                </a>
-            </div>
-            <div class="text-center border-t border-gray-200 pt-8 mt-8">
-                <button class="back-button" onclick="scrollToSection('sobre-mi')"><i class="fas fa-arrow-up mr-2"></i><span data-lang="btn-menu">Menú Principal</span></button>
-            </div>
+        <div class="gig-card gig-purple">
+          <div class="gig-icon"><i class="fas fa-code"></i></div>
+          <div class="gig-title" data-lang="gig3-title">Programación Embebida</div>
+          <div class="gig-desc" data-lang="gig3-desc">Firmware para Arduino, ESP32, STM32 y Raspberry Pi. Integración de sensores, comunicación IoT y control de actuadores.</div>
+          <ul class="gig-deliverables">
+            <li data-lang="gig3-d1">Código C/C++ o MicroPython</li>
+            <li data-lang="gig3-d2">Integración de sensores/módulos</li>
+            <li data-lang="gig3-d3">Comunicación UART/SPI/I2C/WiFi</li>
+            <li data-lang="gig3-d4">Documentación técnica</li>
+          </ul>
+          <div class="gig-footer">
+            <div class="gig-price"><span data-lang="gig-from">Desde</span> <strong>$20</strong> USD</div>
+            <a href="https://es.fiverr.com/users/luis_escareno" target="_blank" class="gig-cta" data-lang="gig-order">Contratar →</a>
+          </div>
         </div>
-    </section>
 
-    <footer class="bg-white py-8 text-center border-t border-gray-200">
-        <div class="container mx-auto px-6">
-            <p class="text-gray-500 mb-6" data-lang="footer">© 2026 - Creado con pasión por la tecnología y programación</p>
-            <button class="back-button" onclick="scrollToSection('sobre-mi')"><i class="fas fa-arrow-up mr-2"></i><span data-lang="btn-menu">Menú Principal</span></button>
+        <div class="gig-card gig-amber">
+          <div class="gig-icon"><i class="fas fa-robot"></i></div>
+          <div class="gig-title" data-lang="gig4-title">Diseño de Sistemas Robóticos</div>
+          <div class="gig-desc" data-lang="gig4-desc">Diseño mecánico y electrónico de robots móviles y brazos robóticos. Cinemática, control de motores y autonomía con sensores.</div>
+          <ul class="gig-deliverables">
+            <li data-lang="gig4-d1">Diseño mecánico 3D</li>
+            <li data-lang="gig4-d2">Electrónica de control</li>
+            <li data-lang="gig4-d3">Algoritmos de navegación/control</li>
+            <li data-lang="gig4-d4">Prototipo funcional documentado</li>
+          </ul>
+          <div class="gig-footer">
+            <div class="gig-price"><span data-lang="gig-from">Desde</span> <strong>$50</strong> USD</div>
+            <a href="https://es.fiverr.com/users/luis_escareno" target="_blank" class="gig-cta" data-lang="gig-order">Contratar →</a>
+          </div>
         </div>
-    </footer>
 
-    <script>
-        // Función para desplazarse horizontalmente a una sección
-        function scrollToSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            if (section) {
-                section.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'nearest',
-                    inline: 'start'
-                });
-            }
-        }
+        <div class="gig-card gig-cyan">
+          <div class="gig-icon"><i class="fas fa-wifi"></i></div>
+          <div class="gig-title" data-lang="gig5-title">Proyectos IoT</div>
+          <div class="gig-desc" data-lang="gig5-desc">Soluciones IoT completas: hardware, firmware y conectividad en la nube. Monitoreo remoto, telemetría y automatización inteligente.</div>
+          <ul class="gig-deliverables">
+            <li data-lang="gig5-d1">Hardware ESP32/ESP8266</li>
+            <li data-lang="gig5-d2">Conectividad MQTT/HTTP</li>
+            <li data-lang="gig5-d3">Dashboard de monitoreo</li>
+            <li data-lang="gig5-d4">Integración con cloud (AWS/Azure)</li>
+          </ul>
+          <div class="gig-footer">
+            <div class="gig-price"><span data-lang="gig-from">Desde</span> <strong>$35</strong> USD</div>
+            <a href="https://es.fiverr.com/users/luis_escareno" target="_blank" class="gig-cta" data-lang="gig-order">Contratar →</a>
+          </div>
+        </div>
 
-        // Sistema de tema claro/oscuro
-        function setTheme(theme) {
-            const isDark = theme === 'dark';
-            document.body.classList.toggle('dark-mode', isDark);
-            localStorage.setItem('theme', theme);
+        <div class="gig-card gig-rose">
+          <div class="gig-icon"><i class="fas fa-bolt"></i></div>
+          <div class="gig-title" data-lang="gig6-title">Soporte y Consultoría Técnica</div>
+          <div class="gig-desc" data-lang="gig6-desc">Asesoría en selección de componentes, revisión de diseños, debugging de circuitos y optimización de proyectos de electrónica.</div>
+          <ul class="gig-deliverables">
+            <li data-lang="gig6-d1">Revisión de esquemáticos</li>
+            <li data-lang="gig6-d2">Selección de componentes</li>
+            <li data-lang="gig6-d3">Debugging y troubleshooting</li>
+            <li data-lang="gig6-d4">Informe técnico detallado</li>
+          </ul>
+          <div class="gig-footer">
+            <div class="gig-price"><span data-lang="gig-from">Desde</span> <strong>$15</strong> USD</div>
+            <a href="https://es.fiverr.com/users/luis_escareno" target="_blank" class="gig-cta" data-lang="gig-order">Contratar →</a>
+          </div>
+        </div>
 
-            const themeButton = document.getElementById('theme-toggle');
-            if (themeButton) {
-                themeButton.textContent = isDark ? '☀︎' : '⏾';
-                themeButton.title = isDark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro';
-            }
-        }
+      </div>
 
-        function toggleTheme() {
-            const isDark = document.body.classList.contains('dark-mode');
-            setTheme(isDark ? 'light' : 'dark');
-        }
+      <div style="margin-top:3rem">
+        <div class="fiverr-banner">
+          <h3 data-lang="fiverr-banner-title">¿Listo para empezar tu proyecto?</h3>
+          <p data-lang="fiverr-banner-desc">Visita mi perfil en Fiverr para ver reseñas reales, portafolio completo y hacer un pedido.</p>
+          <a href="https://es.fiverr.com/users/luis_escareno" target="_blank" class="btn-primary" style="display:inline-flex">
+            <i class="fab fa-fiverr"></i> <span data-lang="fiverr-btn">Ver perfil en Fiverr</span>
+          </a>
+        </div>
+      </div>
 
-        // Sistema de traducción
-        const translations = {
-            es: {
-                'nav-about': 'Sobre mí',
-                'nav-academic': 'Académico',
-                'nav-projects': 'Proyectos',
-                'nav-fiverr': 'Fiverr',
-                'nav-articles': 'Artículos',
-                'nav-contact': 'Contacto',
-                'header-title': 'Ingeniero en Mecatrónica',
-                'header-desc': 'Ingeniero en Mecatrónica, con experiencia en más de 20 proyectos internacionales de hardware y diseño de PCBs. Apasionado por la innovación tecnológica y la creación de soluciones eficientes en el ámbito de los sistemas embebidos y robótica. Mi objetivo es seguir creciendo profesionalmente y contribuir al desarrollo de tecnologías que mejoren la calidad de vida.',
-                'about-kicker': 'Perfil profesional',
-                'metric1-label': 'Experiencia',
-                'metric1-value': '20+ proyectos',
-                'metric2-label': 'Especialidad',
-                'metric3-label': 'Clientes en',
-                'metric3-value': '11 países',
-                'metric4-label': 'Modalidad',
-                'metric4-value': 'Freelance',
-                'about-github': 'Ver GitHub',
-                'about-card-bio': 'Diseño e innovación en electrónica y mecánica para convertir ideas en productos funcionales y listos para fabricar.',
-                'about-chip-1': 'Experto en EasyEDA',
-                'about-chip-2': 'Desarrollador Python',
-                'about-chip-3': 'Experto en SolidWorks',
-                'about-cta': 'Ver servicios en Fiverr',
-                'btn-cv': 'Descargar mi CV (PDF)',
-                'countries-title': 'Clientes principales por país:',
-                'country-usa': 'Estados Unidos',
-                'country-mexico': 'México',
-                'country-germany': 'Alemania',
-                'country-france': 'Francia',
-                'country-others': 'Otros (7)',
-                'countries-total': 'Total: 29 clientes internacionales',
-                'section-academic': 'Formación Académica',
-                'degree-title': 'Ingeniería en Mecatrónica',
-                'degree-school': 'Unidad Profesional Interdisciplinaria de Ingeniería campus Zacatecas - Instituto Politécnico Nacional - Zacatecas, México',
-                'cert-solidworks': 'Certificados SOLIDWORKS',
-                'cert-associate': 'Asociado',
-                'cert-professional': 'Profesional',
-                'btn-menu': 'Menú Principal',
-                'section-projects': 'Proyectos Destacados',
-                'section-articles': 'Artículos y Divulgación',
-                'section-fiverr': 'Servicios en Fiverr',
-                'section-contact': 'Contacto',
-                'contact-desc': 'Estoy disponible para cotizaciones, trabajo y nuevos proyectos.',
-                'contact-email-label': 'luisescarenofernandez@gmail.com',
-                'fiverr-desc': 'Diseño de PCBs profesional con experiencia en proyectos internacionales',
-                'fiverr-rating': 'Calificación',
-                'fiverr-link': 'Ir a mi perfil en Fiverr',
-                'fiverr-preview-title': 'Vista previa del perfil y reseñas',
-                'fiverr-preview-label': 'Perfil público de Fiverr',
-                'fiverr-preview-note': 'Las reseñas aparecen en tu perfil público y aquí se muestran mediante una vista previa directa.',
-                'fiverr-open-profile': 'Abrir perfil de Fiverr',
-                'fiverr-highlights': 'Lo que verán en mi perfil',
-                'fiverr-highlight-1': 'Servicios de diseño de PCB y esquemáticos para proyectos electrónicos.',
-                'fiverr-highlight-2': 'Reseñas reales de clientes y calificaciones visibles en tu perfil público.',
-                'fiverr-highlight-3': 'Acceso rápido para contratarte o revisar tu oferta completa.',
-                'read-more': 'Leer más →',
-                'footer': '© 2026 - Creado con pasión por la tecnología y programación'
-            },
-            en: {
-                'nav-about': 'About Me',
-                'nav-academic': 'Academic',
-                'nav-projects': 'Projects',
-                'nav-fiverr': 'Fiverr',
-                'nav-articles': 'Articles',
-                'nav-contact': 'Contact',
-                'header-title': 'Mechatronics Engineer',
-                'header-desc': 'Mechatronics Engineer with experience in over 20 international hardware projects and PCB design. Passionate about technological innovation and creating efficient solutions in the field of embedded systems and robotics. My goal is to continue growing professionally and contribute to the development of technologies that improve quality of life.',
-                'about-kicker': 'Professional profile',
-                'metric1-label': 'Experience',
-                'metric1-value': '20+ projects',
-                'metric2-label': 'Specialty',
-                'metric3-label': 'Clients in',
-                'metric3-value': '11 countries',
-                'metric4-label': 'Work mode',
-                'metric4-value': 'Freelance',
-                'about-github': 'View GitHub',
-                'about-card-bio': 'Electronics and mechanical design innovation to turn ideas into functional products ready for manufacturing.',
-                'about-chip-1': 'EasyEDA Expert',
-                'about-chip-2': 'Python Developer',
-                'about-chip-3': 'SolidWorks Expert',
-                'about-cta': 'View Fiverr services',
-                'btn-cv': 'Download my CV (PDF)',
-                'countries-title': 'Top clients by country:',
-                'country-usa': 'United States',
-                'country-mexico': 'Mexico',
-                'country-germany': 'Germany',
-                'country-france': 'France',
-                'country-others': 'Others (7)',
-                'countries-total': 'Total: 29 international clients',
-                'section-academic': 'Academic Background',
-                'degree-title': 'Mechatronics Engineering',
-                'degree-school': 'Interdisciplinary Professional Unit of Engineering Zacatecas Campus - National Polytechnic Institute - Zacatecas, Mexico',
-                'cert-solidworks': 'SOLIDWORKS Certificates',
-                'cert-associate': 'Associate',
-                'cert-professional': 'Professional',
-                'btn-menu': 'Main Menu',
-                'section-projects': 'Featured Projects',
-                'section-articles': 'Articles and Outreach',
-                'section-fiverr': 'Fiverr Services',
-                'section-contact': 'Contact',
-                'contact-desc': 'I am available for quotes, work opportunities, and new projects.',
-                'contact-email-label': 'luisescarenofernandez@gmail.com',
-                'fiverr-desc': 'Professional PCB design with experience in international projects',
-                'fiverr-rating': 'Rating',
-                'fiverr-link': 'Go to my Fiverr profile',
-                'fiverr-preview-title': 'Profile and review preview',
-                'fiverr-preview-label': 'Public Fiverr profile',
-                'fiverr-preview-note': 'Reviews appear on your public profile and are shown here through a direct preview.',
-                'fiverr-open-profile': 'Open Fiverr profile',
-                'fiverr-highlights': 'What visitors will see',
-                'fiverr-highlight-1': 'PCB design and schematic services for electronics projects.',
-                'fiverr-highlight-2': 'Real client reviews and ratings visible on your public profile.',
-                'fiverr-highlight-3': 'Quick access to hire you or review your full offer.',
-                'read-more': 'Read more →',
-                'footer': '© 2026 - Created with passion for technology and programming'
-            }
-        };
+      <div class="back-wrap"><a href="#sobre-mi" class="back-btn"><i class="fas fa-arrow-up"></i> <span data-lang="btn-back">Inicio</span></a></div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
 
-        function updateCvDownloadLink(lang) {
-            const cvButton = document.getElementById('cv-download-button');
-            if (!cvButton) {
-                return;
-            }
+<!-- PROJECTS -->
+<section id="proyectos">
+  <div class="section-inner">
+    <div class="container">
+      <div class="section-label" data-lang="label-projects">// proyectos</div>
+      <div class="section-title" data-lang="title-projects">Proyectos <span>Destacados</span></div>
+      <div class="projects-grid">
 
-            const fallbackHref = cvButton.dataset.cvEs || 'CV.pdf';
-            const selectedHref = lang === 'en'
-                ? (cvButton.dataset.cvEn || fallbackHref)
-                : fallbackHref;
+        <div class="project-card">
+          <div class="project-img-wrap">
+            <img src="Vending_machine.png" alt="Smart Vending Machine PCB" onerror="this.parentElement.innerHTML='<div class=\'project-img-placeholder\'><i class=\'fas fa-microchip\'></i></div>'">
+          </div>
+          <div class="project-body">
+            <div class="project-title" data-lang="p1-title">Máquina Expendedora PCB</div>
+            <p class="project-desc" data-lang="p1-desc">Placa multicapa con integración de ESP32 y sensores industriales. Proyecto freelance internacional.</p>
+            <div class="project-tags">
+              <span class="tag" style="background:rgba(59,130,246,0.12);color:var(--accent2);border:1px solid rgba(59,130,246,0.2)">EasyEDA</span>
+              <span class="tag" style="background:rgba(16,185,129,0.12);color:var(--green2);border:1px solid rgba(16,185,129,0.2)">ESP32</span>
+              <span class="tag" style="background:rgba(245,158,11,0.12);color:#fbbf24;border:1px solid rgba(245,158,11,0.2)">Freelance</span>
+            </div>
+            <div class="project-actions">
+              <a href="Schematic_Vending-machine.pdf" target="_blank" class="proj-btn proj-btn-dark"><i class="fas fa-file-pdf"></i> Esquemático</a>
+              <a href="proyecto1-detalles.jpg" target="_blank" class="proj-btn proj-btn-blue"><i class="fas fa-image"></i> Ver más</a>
+            </div>
+          </div>
+        </div>
 
-            cvButton.setAttribute('href', selectedHref);
-            cvButton.setAttribute('download', selectedHref.split('/').pop());
+        <div class="project-card">
+          <div class="project-img-wrap">
+            <img src="Battery_Circuit.png" alt="Circuito con Batería" onerror="this.parentElement.innerHTML='<div class=\'project-img-placeholder\'><i class=\'fas fa-battery-full\'></i></div>'">
+          </div>
+          <div class="project-body">
+            <div class="project-title" data-lang="p2-title">Circuito con Batería PCB</div>
+            <p class="project-desc" data-lang="p2-desc">Diseño de circuito con batería 18650 integrada para aplicaciones portátiles IoT.</p>
+            <div class="project-tags">
+              <span class="tag" style="background:rgba(139,92,246,0.12);color:#a78bfa;border:1px solid rgba(139,92,246,0.2)">18650</span>
+              <span class="tag" style="background:rgba(34,211,238,0.12);color:#22d3ee;border:1px solid rgba(34,211,238,0.2)">IoT</span>
+            </div>
+            <div class="project-actions">
+              <a href="esquematico2.pdf" target="_blank" class="proj-btn proj-btn-dark"><i class="fas fa-file-pdf"></i> Esquemático</a>
+              <a href="proyecto2-detalles.jpg" target="_blank" class="proj-btn proj-btn-blue"><i class="fas fa-image"></i> Ver más</a>
+            </div>
+          </div>
+        </div>
 
-            cvButton.classList.remove('missing-asset');
-            cvButton.removeAttribute('aria-disabled');
-            if (cvButton.dataset.originalTitle) {
-                cvButton.title = cvButton.dataset.originalTitle;
-            } else {
-                cvButton.removeAttribute('title');
-            }
+        <div class="project-card">
+          <div class="project-img-wrap">
+            <div class="project-img-placeholder"><i class="fas fa-robot"></i></div>
+          </div>
+          <div class="project-body">
+            <div class="project-title" data-lang="p3-title">Robot Móvil Autónomo</div>
+            <p class="project-desc" data-lang="p3-desc">Plataforma robótica con navegación por sensores ultrasonido y encoders de cuadratura.</p>
+            <div class="project-tags">
+              <span class="tag" style="background:rgba(239,68,68,0.12);color:#f87171;border:1px solid rgba(239,68,68,0.2)">Arduino</span>
+              <span class="tag" style="background:rgba(245,158,11,0.12);color:#fbbf24;border:1px solid rgba(245,158,11,0.2)">Robótica</span>
+            </div>
+            <div class="project-actions">
+              <a href="esquematico3.pdf" target="_blank" class="proj-btn proj-btn-dark"><i class="fas fa-file-pdf"></i> Esquemático</a>
+              <a href="proyecto3-detalles.jpg" target="_blank" class="proj-btn proj-btn-blue"><i class="fas fa-image"></i> Ver más</a>
+            </div>
+          </div>
+        </div>
 
-            markMissingLocalAsset(cvButton);
-        }
+        <div class="project-card">
+          <div class="project-img-wrap">
+            <div class="project-img-placeholder"><i class="fas fa-cloud-sun"></i></div>
+          </div>
+          <div class="project-body">
+            <div class="project-title" data-lang="p4-title">Estación Meteorológica</div>
+            <p class="project-desc" data-lang="p4-desc">Sistema de monitoreo ambiental con transmisión de datos en tiempo real vía STM32.</p>
+            <div class="project-tags">
+              <span class="tag" style="background:rgba(20,184,166,0.12);color:#2dd4bf;border:1px solid rgba(20,184,166,0.2)">STM32</span>
+              <span class="tag" style="background:rgba(34,211,238,0.12);color:#22d3ee;border:1px solid rgba(34,211,238,0.2)">Sensores</span>
+            </div>
+            <div class="project-actions">
+              <a href="esquematico4.pdf" target="_blank" class="proj-btn proj-btn-dark"><i class="fas fa-file-pdf"></i> Esquemático</a>
+              <a href="proyecto4-detalles.jpg" target="_blank" class="proj-btn proj-btn-blue"><i class="fas fa-image"></i> Ver más</a>
+            </div>
+          </div>
+        </div>
 
-        // Función para cambiar idioma
-        function changeLanguage(lang) {
-            // Guardar preferencia
-            localStorage.setItem('language', lang);
-            
-            // Actualizar atributo HTML
-            document.documentElement.lang = lang;
-            
-            // Cambiar todos los textos
-            document.querySelectorAll('[data-lang]').forEach(element => {
-                const key = element.getAttribute('data-lang');
-                if (translations[lang][key]) {
-                    element.textContent = translations[lang][key];
-                }
-            });
-            
-            // Actualizar botones activos
-            document.getElementById('btn-es').classList.toggle('bg-blue-600', lang === 'es');
-            document.getElementById('btn-es').classList.toggle('bg-slate-700', lang !== 'es');
-            document.getElementById('btn-en').classList.toggle('bg-blue-600', lang === 'en');
-            document.getElementById('btn-en').classList.toggle('bg-slate-700', lang !== 'en');
+        <div class="project-card">
+          <div class="project-img-wrap">
+            <div class="project-img-placeholder"><i class="fas fa-id-card"></i></div>
+          </div>
+          <div class="project-body">
+            <div class="project-title" data-lang="p5-title">Control de Acceso RFID</div>
+            <p class="project-desc" data-lang="p5-desc">Sistema de seguridad con autenticación por tarjeta y registro en base de datos en Raspberry Pi.</p>
+            <div class="project-tags">
+              <span class="tag" style="background:rgba(99,102,241,0.12);color:#a5b4fc;border:1px solid rgba(99,102,241,0.2)">Raspberry Pi</span>
+              <span class="tag" style="background:rgba(236,72,153,0.12);color:#f9a8d4;border:1px solid rgba(236,72,153,0.2)">Seguridad</span>
+            </div>
+            <div class="project-actions">
+              <a href="esquematico5.pdf" target="_blank" class="proj-btn proj-btn-dark"><i class="fas fa-file-pdf"></i> Esquemático</a>
+              <a href="proyecto5-detalles.jpg" target="_blank" class="proj-btn proj-btn-blue"><i class="fas fa-image"></i> Ver más</a>
+            </div>
+          </div>
+        </div>
 
-            updateCvDownloadLink(lang);
-        }
+        <div class="project-card">
+          <div class="project-img-wrap">
+            <div class="project-img-placeholder"><i class="fas fa-cogs"></i></div>
+          </div>
+          <div class="project-body">
+            <div class="project-title" data-lang="p6-title">Brazo Robótico Pick & Place</div>
+            <p class="project-desc" data-lang="p6-desc">Brazo de 4 DOF con control por cinemática inversa para automatización industrial.</p>
+            <div class="project-tags">
+              <span class="tag" style="background:rgba(245,158,11,0.12);color:#fbbf24;border:1px solid rgba(245,158,11,0.2)">Servos</span>
+              <span class="tag" style="background:rgba(132,204,22,0.12);color:#bef264;border:1px solid rgba(132,204,22,0.2)">Automatización</span>
+            </div>
+            <div class="project-actions">
+              <a href="esquematico6.pdf" target="_blank" class="proj-btn proj-btn-dark"><i class="fas fa-file-pdf"></i> Esquemático</a>
+              <a href="proyecto6-detalles.jpg" target="_blank" class="proj-btn proj-btn-blue"><i class="fas fa-image"></i> Ver más</a>
+            </div>
+          </div>
+        </div>
 
-        function createPlaceholderDataUri(label) {
-            const safeLabel = (label || 'Imagen no disponible')
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;');
-            const svg = `
-                <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
-                    <defs>
-                        <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
-                            <stop offset="0%" stop-color="#0f172a" />
-                            <stop offset="100%" stop-color="#1d4ed8" />
-                        </linearGradient>
-                    </defs>
-                    <rect width="1200" height="675" fill="url(#g)" />
-                    <rect x="60" y="60" width="1080" height="555" rx="36" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.22)" />
-                    <text x="600" y="315" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="700" text-anchor="middle">${safeLabel}</text>
-                    <text x="600" y="370" fill="#cbd5e1" font-family="Arial, Helvetica, sans-serif" font-size="24" text-anchor="middle">Archivo no disponible en este despliegue</text>
-                </svg>`;
-            return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
-        }
+      </div>
+      <div class="back-wrap"><a href="#sobre-mi" class="back-btn"><i class="fas fa-arrow-up"></i> <span data-lang="btn-back">Inicio</span></a></div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
 
-        function applyImageFallback(image) {
-            if (!image || image.dataset.fallbackReady === 'true') {
-                return;
-            }
+<!-- ARTICLES -->
+<section id="articulos">
+  <div class="section-inner">
+    <div class="container">
+      <div class="section-label" data-lang="label-articles">// publicaciones</div>
+      <div class="section-title" data-lang="title-articles">Artículos <span>Publicados</span></div>
+      <div class="article-card">
+        <div class="article-conf">IEEE ICECET 2025 · París, Francia</div>
+        <div class="article-title">"Deployment of an Agricultural Mobile Robot for the Detection of Damaged Areas in Bean Crops Using Artificial Intelligence"</div>
+        <div class="article-authors"><strong style="color:var(--text)">Autores:</strong> Rafael Reveles-Martínez, Edgar R. Ruvalcaba Castro, Israel Herrera-Álvarez</div>
+        <div class="article-venue">5ª Conferencia Internacional de Tecnologías Eléctrica, de Computación y Energía · 2025</div>
+        <a href="https://doi.org/10.1109/ICECET63943.2025.11471958" target="_blank" class="article-link">
+          <span data-lang="read-more">Leer en IEEE Xplore</span> <i class="fas fa-external-link-alt" style="font-size:11px"></i>
+        </a>
+      </div>
+      <div class="back-wrap"><a href="#sobre-mi" class="back-btn"><i class="fas fa-arrow-up"></i> <span data-lang="btn-back">Inicio</span></a></div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
 
-            image.dataset.fallbackReady = 'true';
-            image.addEventListener('error', () => {
-                image.src = createPlaceholderDataUri(image.alt || 'Imagen no disponible');
-            }, { once: true });
-        }
+<!-- CONTACT -->
+<section id="contacto">
+  <div class="section-inner">
+    <div class="container">
+      <div class="section-label" data-lang="label-contact">// contacto</div>
+      <div class="section-title" data-lang="title-contact">Hablemos de tu <span>Proyecto</span></div>
+      <div class="contact-card">
+        <p data-lang="contact-desc">Disponible para cotizaciones, colaboraciones y nuevos proyectos. Respondo en menos de 24 horas.</p>
+        <a href="mailto:luisescarenofernandez@gmail.com" class="contact-email">
+          <i class="fas fa-envelope"></i> luisescarenofernandez@gmail.com
+        </a>
+        <div style="margin-top:1.5rem;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+          <a href="https://github.com/luisescareno18" target="_blank" class="btn-ghost"><i class="fab fa-github"></i> GitHub</a>
+          <a href="https://es.fiverr.com/users/luis_escareno" target="_blank" class="btn-ghost" style="color:var(--green2);border-color:rgba(16,185,129,0.3)"><i class="fab fa-fiverr"></i> Fiverr</a>
+        </div>
+      </div>
+      <div class="back-wrap"><a href="#sobre-mi" class="back-btn"><i class="fas fa-arrow-up"></i> <span data-lang="btn-back">Inicio</span></a></div>
+    </div>
+  </div>
+</section>
 
-        function markMissingLocalAsset(link) {
-            const href = link.getAttribute('href');
-            if (!href || /^(#|https?:|mailto:|tel:|javascript:)/i.test(href)) {
-                return;
-            }
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p data-lang="footer">© 2026 Luis Eduardo Escareño Fernández · </p>
+  </div>
+</footer>
 
-            if (!/\.(pdf|png|jpe?g|gif|webp|svg)$/i.test(href)) {
-                return;
-            }
+<script>
+const T = {
+  es: {
+    'nav-about':'Sobre mí','nav-academic':'Académico','nav-services':'Servicios','nav-projects':'Proyectos','nav-articles':'Artículos','nav-contact':'Contacto',
+    'hero-available':'Disponible para proyectos',
+    'hero-title1':'Ingeniero','hero-title2':'en Mecatrónica',
+    'hero-desc':'Ingeniero en Mecatrónica con experiencia en más de 20 proyectos internacionales de hardware y diseño de PCBs. Especializado en sistemas embebidos, robótica y manufactura.',
+    'm1-label':'Proyectos','m2-label':'Países','m3-label':'Clientes','m4-label':'Modalidad','m4-val':'Freelance',
+    'countries-title':'Top clientes por país',
+    'c-usa':'Estados Unidos','c-mx':'México','c-de':'Alemania','c-fr':'Francia','c-other':'Otros (7)',
+    'btn-cv':'Descargar CV','profile-bio':'Diseño e innovación en electrónica y mecánica para convertir ideas en productos funcionales y listos para fabricar.',
+    'chip1':'EasyEDA Expert','chip2':'Python Dev','chip3':'SolidWorks Expert','profile-cta':'Ver servicios en Fiverr',
+    'label-academic':'// formación','title-academic':'Formación Académica',
+    'degree':'Ingeniería en Mecatrónica','school':'Unidad Profesional Interdisciplinaria de Ingeniería campus Zacatecas · Instituto Politécnico Nacional · Zacatecas, México',
+    'cert-title':'Certificados SOLIDWORKS','cert-assoc':'Asociado (CSWA)','cert-pro':'Profesional (CSWP)',
+    'btn-back':'Inicio',
+    'label-services':'// servicios','title-services':'Mis Servicios',
+    'gig1-title':'Diseño de PCB Profesional','gig1-desc':'Diseño de placas de circuito impreso con EasyEDA, Altium o KiCAD. Desde prototipos hasta diseños multicapa listos para fabricación.',
+    'gig1-d1':'Diseño esquemático completo','gig1-d2':'Layout PCB con DRC aprobado','gig1-d3':'Archivos Gerber para producción','gig1-d4':'BOM (lista de materiales)',
+    'gig2-title':'Diseño 3D en SolidWorks','gig2-desc':'Modelado 3D, ensambles y planos de fabricación con SolidWorks. Certificado CSWP con especialidades en Sheet Metal y Weldments.',
+    'gig2-d1':'Modelos 3D paramétricos','gig2-d2':'Ensambles completos','gig2-d3':'Planos de fabricación (GD&T)','gig2-d4':'Archivos STEP/IGES/STL',
+    'gig3-title':'Programación Embebida','gig3-desc':'Firmware para Arduino, ESP32, STM32 y Raspberry Pi. Integración de sensores, comunicación IoT y control de actuadores.',
+    'gig3-d1':'Código C/C++ o MicroPython','gig3-d2':'Integración de sensores/módulos','gig3-d3':'Comunicación UART/SPI/I2C/WiFi','gig3-d4':'Documentación técnica',
+    'gig4-title':'Diseño de Sistemas Robóticos','gig4-desc':'Diseño mecánico y electrónico de robots móviles y brazos robóticos. Cinemática, control de motores y autonomía con sensores.',
+    'gig4-d1':'Diseño mecánico 3D','gig4-d2':'Electrónica de control','gig4-d3':'Algoritmos de navegación/control','gig4-d4':'Prototipo funcional documentado',
+    'gig5-title':'Proyectos IoT','gig5-desc':'Soluciones IoT completas: hardware, firmware y conectividad en la nube. Monitoreo remoto, telemetría y automatización inteligente.',
+    'gig5-d1':'Hardware ESP32/ESP8266','gig5-d2':'Conectividad MQTT/HTTP','gig5-d3':'Dashboard de monitoreo','gig5-d4':'Integración con cloud (AWS/Azure)',
+    'gig6-title':'Soporte y Consultoría Técnica','gig6-desc':'Asesoría en selección de componentes, revisión de diseños, debugging de circuitos y optimización de proyectos de electrónica.',
+    'gig6-d1':'Revisión de esquemáticos','gig6-d2':'Selección de componentes','gig6-d3':'Debugging y troubleshooting','gig6-d4':'Informe técnico detallado',
+    'gig-from':'Desde','gig-order':'Contratar →',
+    'fiverr-banner-title':'¿Listo para empezar tu proyecto?','fiverr-banner-desc':'Visita mi perfil en Fiverr para ver reseñas reales, portafolio completo y hacer un pedido.','fiverr-btn':'Ver perfil en Fiverr',
+    'label-projects':'// proyectos','title-projects':'Proyectos Destacados',
+    'p1-title':'Máquina Expendedora PCB','p1-desc':'Placa multicapa con integración de ESP32 y sensores industriales. Proyecto freelance internacional.',
+    'p2-title':'Circuito con Batería PCB','p2-desc':'Diseño de circuito con batería 18650 integrada para aplicaciones portátiles IoT.',
+    'p3-title':'Robot Móvil Autónomo','p3-desc':'Plataforma robótica con navegación por sensores ultrasonido y encoders de cuadratura.',
+    'p4-title':'Estación Meteorológica','p4-desc':'Sistema de monitoreo ambiental con transmisión de datos en tiempo real vía STM32.',
+    'p5-title':'Control de Acceso RFID','p5-desc':'Sistema de seguridad con autenticación por tarjeta y registro en base de datos en Raspberry Pi.',
+    'p6-title':'Brazo Robótico Pick & Place','p6-desc':'Brazo de 4 DOF con control por cinemática inversa para automatización industrial.',
+    'label-articles':'// publicaciones','title-articles':'Artículos Publicados','read-more':'Leer en IEEE Xplore',
+    'label-contact':'// contacto','title-contact':'Hablemos de tu Proyecto',
+    'contact-desc':'Disponible para cotizaciones, colaboraciones y nuevos proyectos. Respondo en menos de 24 horas.',
+    'footer':'© 2026 Luis Eduardo Escareño Fernández '
+  },
+  en: {
+    'nav-about':'About me','nav-academic':'Academic','nav-services':'Services','nav-projects':'Projects','nav-articles':'Articles','nav-contact':'Contact',
+    'hero-available':'Available for projects',
+    'hero-title1':'Mechatronics','hero-title2':'Engineer',
+    'hero-desc':'Mechatronics Engineer with experience in over 20 international hardware and PCB design projects. Specialized in embedded systems, robotics, and manufacturing.',
+    'm1-label':'Projects','m2-label':'Countries','m3-label':'Clients','m4-label':'Work mode','m4-val':'Freelance',
+    'countries-title':'Top clients by country',
+    'c-usa':'United States','c-mx':'Mexico','c-de':'Germany','c-fr':'France','c-other':'Others (7)',
+    'btn-cv':'Download CV','profile-bio':'Electronics and mechanical design innovation to turn ideas into functional, manufacture-ready products.',
+    'chip1':'EasyEDA Expert','chip2':'Python Dev','chip3':'SolidWorks Expert','profile-cta':'View Fiverr services',
+    'label-academic':'// education','title-academic':'Academic Background',
+    'degree':'Mechatronics Engineering','school':'Interdisciplinary Professional Unit of Engineering Zacatecas Campus · National Polytechnic Institute · Zacatecas, Mexico',
+    'cert-title':'SOLIDWORKS Certificates','cert-assoc':'Associate (CSWA)','cert-pro':'Professional (CSWP)',
+    'btn-back':'Home',
+    'label-services':'// services','title-services':'My Services',
+    'gig1-title':'Professional PCB Design','gig1-desc':'PCB design with EasyEDA, Altium or KiCAD. From prototypes to multilayer designs ready for manufacturing.',
+    'gig1-d1':'Complete schematic design','gig1-d2':'PCB layout with DRC passed','gig1-d3':'Gerber files for production','gig1-d4':'BOM (bill of materials)',
+    'gig2-title':'3D Design in SolidWorks','gig2-desc':'3D modeling, assemblies and manufacturing drawings with SolidWorks. CSWP certified with Sheet Metal and Weldments.',
+    'gig2-d1':'Parametric 3D models','gig2-d2':'Full assemblies','gig2-d3':'Manufacturing drawings (GD&T)','gig2-d4':'STEP/IGES/STL files',
+    'gig3-title':'Embedded Programming','gig3-desc':'Firmware for Arduino, ESP32, STM32 and Raspberry Pi. Sensor integration, IoT communication and actuator control.',
+    'gig3-d1':'C/C++ or MicroPython code','gig3-d2':'Sensor/module integration','gig3-d3':'UART/SPI/I2C/WiFi comms','gig3-d4':'Technical documentation',
+    'gig4-title':'Robotic Systems Design','gig4-desc':'Mechanical and electronic design for mobile robots and robotic arms. Kinematics, motor control and sensor-based autonomy.',
+    'gig4-d1':'3D mechanical design','gig4-d2':'Control electronics','gig4-d3':'Navigation/control algorithms','gig4-d4':'Documented functional prototype',
+    'gig5-title':'IoT Projects','gig5-desc':'Complete IoT solutions: hardware, firmware and cloud connectivity. Remote monitoring, telemetry and smart automation.',
+    'gig5-d1':'ESP32/ESP8266 hardware','gig5-d2':'MQTT/HTTP connectivity','gig5-d3':'Monitoring dashboard','gig5-d4':'Cloud integration (AWS/Azure)',
+    'gig6-title':'Technical Consulting','gig6-desc':'Component selection advice, design reviews, circuit debugging and optimization for electronics projects.',
+    'gig6-d1':'Schematic review','gig6-d2':'Component selection','gig6-d3':'Debugging & troubleshooting','gig6-d4':'Detailed technical report',
+    'gig-from':'From','gig-order':'Hire →',
+    'fiverr-banner-title':'Ready to start your project?','fiverr-banner-desc':'Visit my Fiverr profile to see real reviews, full portfolio and place an order.','fiverr-btn':'View Fiverr profile',
+    'label-projects':'// projects','title-projects':'Featured Projects',
+    'p1-title':'Vending Machine PCB','p1-desc':'Multilayer board with ESP32 integration and industrial sensors. International freelance project.',
+    'p2-title':'Battery Circuit PCB','p2-desc':'Circuit design with integrated 18650 battery for portable IoT applications.',
+    'p3-title':'Autonomous Mobile Robot','p3-desc':'Robotic platform with navigation using ultrasound sensors and quadrature encoders.',
+    'p4-title':'Weather Station','p4-desc':'Environmental monitoring system with real-time data transmission via STM32.',
+    'p5-title':'RFID Access Control','p5-desc':'Security system with card authentication and database logging on Raspberry Pi.',
+    'p6-title':'Pick & Place Robotic Arm','p6-desc':'4-DOF arm with inverse kinematics control for industrial automation.',
+    'label-articles':'// publications','title-articles':'Published Articles','read-more':'Read on IEEE Xplore',
+    'label-contact':'// contact','title-contact':'Let\'s Talk About Your Project',
+    'contact-desc':'Available for quotes, collaborations and new projects. I respond in under 24 hours.',
+    'footer':'© 2026 Luis Eduardo Escareño Fernández · Built with passion for technology'
+  }
+};
 
-            fetch(new URL(href, window.location.href), { method: 'HEAD' })
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error('missing');
-                    }
-                })
-                .catch(() => {
-                    link.classList.add('missing-asset');
-                    link.setAttribute('aria-disabled', 'true');
-                    if (!link.dataset.originalTitle) {
-                        link.dataset.originalTitle = link.title || link.textContent.trim();
-                    }
-                    link.title = 'Archivo no publicado en el repositorio todavía';
-                });
-        }
+let currentLang = localStorage.getItem('lang') || 'es';
+let isDark = localStorage.getItem('theme') !== 'light';
 
-        // Cargar idioma guardado al inicio
-        window.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme) {
-                setTheme(savedTheme);
-            } else {
-                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                setTheme(prefersDark ? 'dark' : 'light');
-            }
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('lang', lang);
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-lang]').forEach(el => {
+    const k = el.getAttribute('data-lang');
+    if (T[lang][k]) el.textContent = T[lang][k];
+  });
+  document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+}
 
-            const savedLang = localStorage.getItem('language') || 'es';
-            changeLanguage(savedLang);
+function setTheme(dark) {
+  isDark = dark;
+  document.body.classList.toggle('light', !dark);
+  document.getElementById('theme-btn').textContent = dark ? '☀︎' : '⏾';
+  localStorage.setItem('theme', dark ? 'dark' : 'light');
+}
 
-            document.querySelectorAll('img').forEach(applyImageFallback);
-            document.querySelectorAll('a[href]').forEach(markMissingLocalAsset);
-        });
-    </script>
+function toggleTheme() { setTheme(!isDark); }
 
+document.addEventListener('DOMContentLoaded', () => {
+  setTheme(isDark);
+  setLang(currentLang);
+});
+</script>
 </body>
 </html>
